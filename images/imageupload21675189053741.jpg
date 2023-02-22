@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/dashboardAddProduct.css">
+      <script src="https://kit.fontawesome.com/243ba828f2.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+    <link rel = "stylesheeet" href="/static/cropperjs/dist/cropper.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+<body>
+
+    <div class = "navbar-dashboard">
+            <div class = "company"> 
+                <div class = "company-logo">
+                    
+                </div>
+                <div class = "company-name">
+                    DOYDOY's BAKE SHOP
+                </div>
+            </div>
+            <div class = "dashboard-menu">
+                <div class="dashboard-menu-options">
+
+                    <div class="d-menu-options-header">
+                        <div class = "d-menu-options-icon">
+                            
+                            <i class="fa-sharp fa-solid fa-list white"></i>
+                        </div>
+                        <div class="d-menu-options-text-header">NAVIGATION</div>
+                    </div>
+                    <a href="/adminpannel"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            
+                            <i class="fa-sharp fa-solid fa-desktop white"></i>
+                        </div>
+                        <div class="d-menu-options-text"> M a i n  &nbsp; D a s h</div>
+                    </a>
+                    <a href="/dashboard/products"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class=" fa-sharp fa-solid fa-box white"></i>
+                        </div>
+                        <div class="d-menu-options-text"> P r o d u c t s</div>
+                    </a>
+                    
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-boxes-packing white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> O r d e r s</div>
+                    </a>
+
+
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-dollar-sign white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> E a r n i n g s</div>
+                    </a>
+                    
+
+
+
+
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-users white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text">A c c o u n t s</div>
+                    </a>
+                    
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-user-secret white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text">V i s i t o r s</div>
+                    </a>
+                    
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-gears white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> O p t i o n s</div>
+                    </a>
+                    
+        
+                </div>
+                    <a href ="/" class="d-menu-options-logout">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-door-open white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> L O G &nbsp; O U T</div>
+                    </a>
+
+            </div>
+
+        </div>
+    <div class = "page">
+
+        <div id="add-category-modal">
+            <form id = "add-category" method="POST" class = "add-category"> 
+
+                <div class = "modal-header-category">
+                    Add Category 
+                </div>
+
+                <div class = "input-text-product-name">
+                    <div class ="header-product-name-label">
+                        New Category
+                    </div>
+                <input class = "product-name" name="categoryName" id = "addcategory" type="text" required></input>
+
+                </div>
+                <div class = "category-button-group">
+                    <button  id = "cancel-category-button" class = "cancel-category-button">               
+                            <div class = "add-product-button-text">Cancel</div>
+                    </button> 
+                    <button type = "submit" id = "add-category-button" class = "add-category-button">               
+                            <div class = "add-product-button-text">Add</div>
+                    </button>
+
+                </div>
+            </form>
+
+        </div>
+        <div class="dashcontent-update">
+            <div class = "header-update">
+                <div class = "divider-header">
+
+                <div class = "circle ">
+
+                </div>
+                <div class = "header-options-logo"> 
+                    Add Product 
+                </div>
+
+
+
+                </div> 
+            </div> 
+                <input name = "imageupload" id ="image-upload" accept='image/*' class = "image-upload" type="file" style="display: none;" multiple >
+ 
+            <form id = "form-photo-details"class ="photo-add-product-form" action="/dashboard/products/add" method="POST" enctype="multipart/form-data">
+           
+     
+            <div class = "add-photo-form" >
+
+              
+                <div id ="image-preview" style="display: none;">
+                    <img id ="image-preview-img"></img>
+
+                </div>
+                    
+                
+                <div id = "photo-cropper" class="photo-cropper pub" >                            
+                    <i class="cloud-logo fa-sharp fa-solid fa-cloud-arrow-up fa-5x"></i>
+                    <div class="label-photo-upload-big">Upload</div>
+                </div>
+                    <div class = "input-text-photo">
+                    <div class ="header-product-image-label">
+                        Images
+                    </div>
+                    <div class = "photo-upload">
+                        <div id="upload-delete" class = "photo-uploud-container-unclickable"> 
+                            <div id = "upload-delete-border" class="photo-upload-button  pub">
+                                <i id = "upload-delete-logo" class="cloud-logo fa-sharp fa-solid fa-cloud-arrow-up"></i>
+                                <div id = "upload-delete-text" class="label-photo-upload">Upload</div>
+                            </div>
+                        </div>
+
+                       <!-- <div class = "photo-uploud-container-unclickable"> 
+                            <div class="photo-delete-button">
+                                <i class="cloud-logo fa-sharp fa-solid fa-trash"></i>
+                                <div class="label-photo-upload">Remove</div>
+                            </div>
+                        </div> -->
+                        <div class = "photo-uploud-container"> 
+                           
+                            <img class="photo-upload-pic white-border" draggable="true"></img>
+                        </div>
+                        <div class = "photo-uploud-container"> 
+                            
+                            <img class="photo-upload-pic white-border" draggable="true"></img>
+                        </div>
+                        <div class = "photo-uploud-container"> 
+                            
+                            <img class="photo-upload-pic white-border" draggable="true"></img>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="add-product-form">
+                <div class="input-fields-section">
+                <div class = "input-text-product-name">
+                    <div class ="header-product-name-label">
+                        Product Name
+                    </div>
+                    <input class = "product-name" name="name" id = "name" type="text" required></input>
+
+                </div>
+                <div class = "input-text-product-description">
+                    <div class ="header-product-name-label">
+                        Description
+                    </div>
+                    <textarea class = "product-description" rows = "10" name="description" id="description" type="text"required></textarea>
+
+                </div> 
+                <div class="category-price">
+                    <div class = "input-text-product-price">
+                        <div class ="header-product-name-label">
+                            Price
+                        </div>
+                        <div class="price-currency">
+                            <input class = "product-price" name = "price" id = "price" type="decimal" required></input>
+                            <select name="productcurrency" placeholder = "$USD"class = "product-currency"type="text"required>
+                                <option value = "USD">$USD</option>
+                                <option value = "CAD">$CAD</option>
+                                <option value = "PESO">₱PESO</option>
+                            </select>
+                        </div>
+                        
+
+                    </div>    
+                    <div class = "input-text-product-category">
+                        <div class ="header-product-name-label">
+                            Category
+                        </div>
+                        <select name ="productcategory" id = "product-category" class = "product-category"type="text" required>
+                           
+                        </select>
+
+                    </div>     
+                </div>     
+
+                <div class="options-quantity">
+                    <div class = "option-list-header">
+                        <div class ="header-product-name-label">
+                            Options
+                        </div>
+                        <div class="option-list">
+                            <input name = "available" id = "available" type="checkbox" checked>
+                            <div class="label-checkbox">Available</div>
+                        </div>
+                                                <div class="option-list">
+                            <input name = "unlimitedQuantity" id ="unlimitedQuantity" type="checkbox" checked>
+                            <div class="label-checkbox">Unlimited Quantity</div>
+                        </div>
+                                                <div class="option-list">
+                            <input type="checkbox">
+                            <div class="label-checkbox">Option #1</div>
+                        </div>
+                                                <div class="option-list">
+                            <input type="checkbox">
+                            <div class="label-checkbox">Option #2</div>
+                        </div>
+                        
+
+                    </div>    
+                    <div class = "input-text-product-quantity">
+                        <div class="quantity-sec">
+                            <div class ="header-product-name-label">
+                                Quantity
+                            </div>
+                            <input name ="quantity" id = "quantity" class = "product-quantity"type="text"></input>
+                        </div>
+                        <div class="weight-sec">
+                            <div class ="header-product-name-label" required>
+                                Weight / Unit
+                            </div>
+                            <div class="weight-unit">
+                                <input name ="productweight" id = "product-weight" class = "product-price"type="decimal"></input>
+                                <select name ="productunit" placeholder = "LBS"class = "product-currency"type="text">
+                                        <option value = "KG">KG</option>
+                                        <option value = "LBS">LBS</option>
+                                        <option value = "G">G</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>     
+                </div>     
+
+            </div>
+
+            <div class="save">
+                                <div class ="button-group">
+
+                                    <button id = "filter-product-button" class = "filter-product-button">
+                                      
+                                        <div class = "filter-product-button-text">Cancel</div>
+                                    </button>
+
+                                    <button type = "submit" id = "add-product-button" class = "add-product-button">
+                                       
+                                        <div class = "add-product-button-text">Save</div>
+                                    </button>
+
+
+                                </div>
+                </div>
+            </div>
+            </form>
+
+
+        </div>
+        
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/static/cropperjs/dist/cropper.js"></script>
+    <script src="/static/dashboardAddProduct.js"></script>
+        
+    </body>
+    </html>

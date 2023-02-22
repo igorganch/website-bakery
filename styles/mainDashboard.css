@@ -1,0 +1,188 @@
+html,body{
+    width: 100%;
+    height: 100%;
+}
+.page {
+    width:90%;
+    height: 150%;
+    background-color: rgba(235, 235, 235, 1);
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    left:10%;
+
+}
+
+/* NAVBAR ===============================================================================*/
+.navbar-dashboard{
+    position: fixed;
+    background-color: rgb(0, 0, 0);
+    height: 100%;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   
+    top:0;
+    left:0;
+    
+
+}
+.company{
+    height: 15%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.company-logo{
+    border: #ffffff dotted;
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.company-name{
+    font-family: 'Outfit', sans-serif;
+    height:auto;
+    width: 100%;
+    font-size: calc(3vmin / 2 );
+    color: black;
+    font-weight: 400;
+    text-align: center;
+    
+    background-color: #ffffff;
+}
+
+
+.dashboard-menu{
+    height: 85%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    
+
+}
+.d-menu-options-header{
+    display: flex;
+    width: 100%;
+    
+    justify-content: start;
+    align-items: center;
+    
+    
+}
+.d-menu-options-text-header{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 200;
+    color: white;
+    text-align: start;
+    width: 80%;
+}
+.dashboard-menu-options{
+    display: flex;
+    width: 100%;
+    height: auto;
+    height: 50%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+}
+.d-menu-options{
+    width: 90%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.d-menu-options-logout{
+    width: 90%;
+    height: 5%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    
+}
+.d-menu-options-icon{
+    width: 20%;
+    align-items: center;
+    text-align: center;
+    
+}
+.d-menu-options-text{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 200;
+    color: white;
+    text-align: center;
+    width: 80%;
+}
+.white{
+    color : white;
+}
+/* DASHBOARD ===============================================================================*/
+.dashcontent-update{
+
+
+    background-color: rgba(235, 235, 235, 1);
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    row-gap: 1vmin;
+    align-items: center;
+    flex-direction: column;
+    
+}
+
+/* HEADER ===============================================================================*/
+
+.header-update{
+    height: 5%;
+    width : 100%;
+    
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+
+    justify-content: start;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+    border-bottom: 1px solid rgba(212, 212, 212, 0.5);
+    box-shadow: 3px 0px 8px rgba(212, 212, 212, 1) ;
+    padding-left: 2%;
+    
+}
+
+.header-options-logo{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 3vmin;
+    width: 100%;
+ 
+    text-align: center;
+
+}
+.circle{
+    height: calc(3vmin/2);
+    width: calc(3vmin/2);
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+.divider-header{
+    width: 10%;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    
+}

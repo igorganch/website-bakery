@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <link rel="stylesheet" type="text/css" href="/static/menu.css">
+                <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/243ba828f2.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>   
+
+        <meta charset="UTF-8">
+        <title>Menu</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        
+       
+  
+        <body>
+            
+                <div class = "header">
+                    <div class = "divider-header">
+                        <div class = "header-options"> 
+                            ABOUT
+                        </div>
+                        <div class = "header-options"> 
+                            MENU
+                        </div>
+
+                        <div class = "header-options-logo"> 
+                        DOYDOY'S &nbsp;&nbsp;BAKE&nbsp;&nbsp;SHOP
+                        </div>
+
+                        <div class = "header-options"> 
+                            CONTACT&nbsp;&nbsp;US
+                        </div>
+
+                        <div class = "header-options"> 
+                            LOGIN
+                        </div>
+                    </div>   
+                    <div class="divider-icons">
+                        <i class="fa-sharp fa-solid fa-user fa-lg"></i>
+                       <i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i>
+                    </div>
+                    
+                </div>
+            <div class="page">
+
+                <div id="user-cart-modal" >
+                   
+                    <div class = "user-cart">
+                        <div class="container-cart">
+                            <div class = "header-user-cart">
+                                <div class="header-user-cart-text">Shopping Cart</div>
+                                <hr class="cart-line">
+                            </div>
+                            <div class = "cart-body">
+                                <div class="cart-rows-header">
+                                    <div class="cart-rows-header-text">Product</div>
+                                    <div class="cart-rows-header-text"></div>
+                                    <div class="cart-rows-header-text">Quantity</div>
+                                    <div class="cart-rows-header-text">Price</div>
+                                    <div class="cart-rows-header-text">Total</div>
+                                    <div class="cart-rows-header-remove"></div>
+                                </div>
+                                <div class="cart-rows">
+                                    
+                                
+                                </div>
+                            </div>
+                            <div class="cart-footer">
+                                <div  class="return">
+                                    <i class="fa-sharp fa-solid fa-chevron-left fa-sm blue" ></i>
+                                    <div class="cart-rows-item-name blue">Return</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-cart-total">
+                            <div class = "header-user-cart">
+                                <div class="header-user-cart-total-text">Order Summary</div>
+                                <hr class="cart-line">
+                            </div>
+                            <div class = "cart-total-body">
+                                <div class="order-info-quantity">
+                                    <div class="order-items-quantity">
+                                         <div id = "number-items" class = "order-info-text"></div>
+                                         <div class = "order-info-text">ITEMS</div>
+                                    
+                                    </div>
+                                    <div  id = "cost-items" class ="order-info-price">
+                                    </div>
+                                   
+                                    
+                                </div>
+                                <div class="shipping-details">
+                                    <div class = "shipping-info-text">SHIPPING</div>
+                                    <select name="shipping-options" id="shipping-options" class="shipping-selector" type="number" required="">
+                                        <option name = "international standard" value="7.80">International Standard - 7.80</option>
+                                        <option name="local shipping" value="3.78">Local Shipping - 3.78</option>
+                                    </select>
+
+                                </div>
+                                <div class="shipping-total-price">
+                                    <hr class="cart-line">
+                                    <div class = "shipping-total">
+                                        <div class="shipping-total-text">
+                                            SHIPPING
+                                        </div>
+                                        <div id = "total-shipping-cost" class="shipping-total-value">
+                                            6.70
+                                        </div>
+
+                                    </div>
+                                    <div class = "shipping-total">
+                                        <div class="shipping-total-text">
+                                            ITEMS 
+                                        </div>
+                                        <div id = "total-item-cost" class="shipping-total-value">
+                                            61.67
+                                        </div>
+
+                                    </div>
+                                    <div class = "full-cart">
+                                        <div class="full-cart-price">
+                                            TOTAL
+                                        </div>
+                                        <div id = "total-cost-shipping-items" class="full-cart-price-value">
+                                            67.87
+                                        </div>
+
+                                    </div>
+                                    <div class="button-container">
+                                        <button class="checkout-button-cart">CHECKOUT</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+      
+                  
+                </div>
+
+
+                <div class = "upper-menu-section">
+                    <div class="product-category">
+                        All Breads 
+                    </div>
+                    <div class = "number-results">
+                        Showing {{product.length}}  products 
+                    </div>
+
+                </div>
+                <div class = "main-content">
+                    <div class = "filters">
+                        <div class = "header-filter">
+                            Filters
+                            <hr class =  "header-filter-line">
+                        </div>
+                        <div class = "category"> 
+                            <div class = "category-header">
+                                Categories
+                                <div class = "categories-hr-cocoa">
+                                </div>
+                            </div>
+                            <div class = "category-options">
+                                {{#each category}}
+                                <div>
+                                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                                <label for="vehicle1">{{this.dataValues.categoryName}}</label><br>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                        <div class = "cart-header">
+                            Cart
+                            <hr class =  "header-filter-line">
+                        </div>
+                        <div class = "cart">
+                            {{#each cart.dataValues.Items}}
+                            <div class="cart-item" id='{{this.dataValues.ProductId}}-cartItem'>
+                                <div class="cart-quantity">
+                                    
+                                    <i class="fa-sharp fa-solid fa-plus fa-sm add-page-cart"></i>
+                                    <input class="item-quantity-input-page" value ='{{this.dataValues.quantity}}' type="number" name="quantity"/>
+                                    <i class="fa-sharp fa-solid fa-minus fa-sm minus-page-cart"></i>
+                                </div>
+                                <div class="cart-product">{{this.dataValues.Product.dataValues.productName}}</div>
+                                <div class="cart-total"> {{this.dataValues.Product.dataValues.currency}}{{this.dataValues.Product.dataValues.price}}</div>
+                                <div class="cart-edit">
+                                    <i class="fa-sharp fa-solid fa-pen-to-square changecolor fa-sm"></i>
+                                    <i class="fa-sharp fa-solid fa-xmark remove-page changecolor fa-sm"></i>
+                                </div>
+                            </div>
+                           {{/each}}
+
+                        </div>
+                        
+                        <div class = "total">
+                            <div class = "line-container">
+                                 <hr class =  "header-filter-line">
+                            </div>
+                           <!-- <div class="tax-subtotal">
+                                <div class="full-subtotal">
+                                    <div>Subtotal :</div> 
+                                    <div class="subtotal">0.00</div>
+                                </div>
+                                <div class = "tax">
+                                    Tax(15%) : 3.25
+                                </div>
+                            </div>  --->
+                            <div class = "full-total">
+                                <div class="total-text">Total : </div>
+                                <div class= "total-price"> 
+                                    
+                                    {{#if cart.dataValues.total}}
+                                        {{cart.dataValues.total}}
+                                    {{else}}
+                                        0.00
+                                    {{/if}}
+                                </div>
+                            </div>
+                            <button  class="checkout-button">
+                            CHECKOUT
+                            </button>
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div class = "products">
+                                {{#each product}}
+                                <div class = "product">
+                                    {{#each this.dataValues.Images}}
+                                        {{#if this.dataValues.main}}
+                                          <img class = "product-image" src = '{{this.dataValues.path}}'>
+                                        {{/if}}
+                                    {{/each}}
+
+                                    <div class = "product-info">
+                                        <div class = "weight-quantity">
+                                            <div class = "quantity">
+                                                <i class="fa-sharp fa-solid fa-box-open"></i>
+                                                <div class="weight-quantity-text">{{this.dataValues.perunit}} in box </div>
+                                            </div>
+                                            <div class = "weight">
+                                                <i class="fa-sharp fa-solid fa-weight-scale"></i>
+                                                <div class="weight-quantity-text">{{this.dataValues.weight}} {{this.dataValues.unit}}</div>
+                                            </div>
+                                        </div>
+                                        <div id ='{{this.dataValues.id}}-name'class = "product-header-item">
+                                              {{this.dataValues.productName}} 
+                                        </div>
+                                        <div class="price-desc">
+                                            <div  id ='{{this.dataValues.id}}-price' class="price"> {{this.dataValues.currency}} {{this.dataValues.price}}</div>
+                                            <div class = "unit">
+                                             /unit
+                                            </div>
+                            
+                                        </div>
+                                        <button id ='{{this.dataValues.id}}-product' class="add-to-cart">
+                                            ADD TO CART
+                                        </button>
+
+
+
+                                    </div>
+
+
+
+
+                                </div>
+
+                                {{/each}}
+
+
+                    </div>
+
+                    
+                </div>
+                
+
+
+            </div>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="/static/menu.js"></script>
+
+        </body>
+    </html>

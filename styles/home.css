@@ -1,0 +1,659 @@
+html, body{
+    height: auto;
+    width: 100%;
+}
+.page{
+
+    height:auto;
+    width: 100%;
+ 
+}
+.header{
+    height: 7%;
+    width : 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    position: absolute;
+    top:0;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+    z-index:  3;
+    border-bottom: 1px solid rgba(212, 212, 212, 0.5);
+    box-shadow: 3px 0px 8px rgba(212, 212, 212, 1) ;
+    
+   
+
+}
+.header-container{
+    
+}
+
+.header-options{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 2vmin;
+    width: 20%;
+   
+    text-align: center;
+}
+.header-options-logo{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 4vmin;
+    width: 25%;
+ 
+    text-align: center;
+
+}
+.divider-header{
+    width: 95%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.divider-icons{
+    width: 5%;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+
+}
+.home-slider{
+    background-image: url(/static/breadhome.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 1080px;
+    position: relative;
+    top:0;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-bottom: 10%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.bg-filter{
+    filter :blur(2px) brightness(0.7);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+.slider-text{
+    height: 40%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+.slider-text-header{
+    height: auto;
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-evenly;
+    
+
+    
+}
+.slider-text-hr{
+
+    height:4px;
+    width: 25%;
+    color: white;
+   
+
+}
+.slider-text-upper{
+    color: white;
+    font-size: calc(7vmin / 2);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    width: 50%;
+    
+    text-align: center;
+}
+
+.slider-text-hr-full{
+    height:4px;
+    width: 100%;
+    color: white;
+}
+
+.slider-text-mid{
+    position: relative;
+
+    width: auto;
+    color: white;
+    font-size: 5vmin;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+   
+}
+.slider-text-mid-lower{
+    position: relative;
+
+    width: auto;
+    color: white;
+    font-size: 34pt;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+}
+.slider-text-lower{
+    color: white;
+    font-size: 20pt;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    width: auto;
+}
+
+.order-online{
+    background-color: rgb(255, 153, 0);
+    color: white;
+    font-size:3vmin;
+    font-family: 'Rubik Distressed', cursive;
+    font-weight: 300;
+    border: none;
+    width: 40%;
+    height: auto;
+   
+}
+.order-online:hover {
+    cursor: pointer;
+    
+}
+
+.custom-shape-divider-bottom-1668641412 {
+  
+
+  
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1668641412 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 89px;
+}
+
+.custom-shape-divider-bottom-1668641412 .shape-fill {
+    fill: rgb(235, 235, 235);
+}
+
+.feature-body{
+    width: 100%;
+    height: 80%;
+    background-color: rgb(235, 235, 235);
+    overflow: hidden;
+   
+    flex-direction: column;
+    
+
+}
+.feature-header{
+    position: relative;
+    font-size: 4vmin;
+    font-family: 'Rubik Distressed', cursive;
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(auto - 5%);
+  
+   
+}
+.categories{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    
+}
+.category{
+    width :10%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.category-header{
+    font-size: 3vmin;
+    font-weight: 500;
+    font-family: 'Rubik Distressed', cursive;
+
+
+}
+
+.category-description{
+    font-size: calc(3vmin / 2);
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    text-align: center;
+}
+.category-image{
+    height: auto;
+    width: 100%;
+   
+    position: relative;
+}
+
+
+.feature-hr{
+
+    height:4px;
+    width: 5%;
+    color: rgb(0, 0, 0);
+
+}
+.first-section{
+    top: 90%;
+    position: absolute;
+   
+    display: flex;
+    column-gap: 0px;
+    width: 100%;
+    height: 80%;
+    flex-direction: column;
+
+}
+.second-section{
+    
+    top: 143%;
+    position: absolute;
+   
+    display: flex;
+    column-gap: 0px;
+    width: 100%;
+    height: 70%;
+
+    flex-direction: column;
+    z-index: 1;
+}
+
+
+
+
+
+.custom-shape-divider-bottom-1668706566 {
+
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1668706566 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 62px;
+}
+
+.custom-shape-divider-bottom-1668706566 .shape-fill {
+    fill: #262626;
+}
+.products{
+
+    width: 100%;
+    background-color: #262626;
+    height: 70%;
+}
+
+.product-header{
+    position: relative;
+    font-size: 4vmin;
+    font-family: 'Rubik Distressed', cursive;
+    color: white;
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(auto - 5%);
+  
+   
+}
+.product-hr{
+
+    height:4px;
+    width: 5%;
+    color: rgb(255, 255, 255);
+
+}
+
+
+.products-items{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+
+}
+.product{
+    width: 22vmin;
+    height: 37vmin;
+    background-color: white;
+    border-color: #dbdbdb;
+
+    display: flex;
+    flex-direction: column;
+    border-radius: 1vmin;
+    overflow: hidden;
+}
+
+
+
+.product-info{
+    height: 15vmin;
+    width: 100%;
+    padding-top: 2%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.weight-quantity{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
+.weight{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+}
+.quantity{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+}
+.product-image{
+    height: 22vmin;
+    width: 22vmin;
+    
+}
+.weight-quantity-text{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    font-size: calc(3vmin/2) ;
+    color: #a0a0a0
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+.product-header-item{
+    color: black;
+    font-family: 'Rubik Distressed', cursive;
+    font-size: 2vmin;
+    height: 5vmin;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    font-weight: 400;
+    line-height: 100%;
+ 
+    
+}
+.price-desc{
+    display: flex;
+    height: 4vmin;
+    padding-left: 2%;
+    padding-right: 2%;
+
+}
+.unit{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin/2vmin) ;
+    font-weight: 200;
+    color: #a0a0a0
+}
+.price{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin) ;
+    color: black;
+    font-weight: 200;
+ 
+   
+}
+
+.add-to-cart{
+    background-color: rgb(255, 153, 0);
+    color: white;
+    font-size:calc(3vmin /2);
+    font-family: 'Rubik Distressed', cursive;
+    font-weight: 300;
+    border: none;
+    width: 100%;
+    height: 4vmin;
+    text-align: center;
+    justify-content: center;
+    
+}
+
+.custom-shape-divider-top-1668724820 {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1668724820 svg {
+    position: relative;
+    display: block;
+    width: calc(121% + 1.3px);
+    height: 87px;
+}
+
+.custom-shape-divider-top-1668724820 .shape-fill {
+    fill: #262626;
+}
+
+.our-story-description{
+    text-align: center;
+    color: rgb(0, 0, 0);
+    height: 50%;
+    width: 50%;
+    font-family: 'Rubik Distressed', cursive;
+    font-weight: 200;
+    font-size: calc(3vmin/2);
+
+}
+.third-section{
+    top: 200%;
+    position: absolute;
+    justify-content: flex-start;
+   
+    display: flex;
+    column-gap: 0px;
+    width: 100%;
+    height: 60%;
+
+    flex-direction: column;
+    z-index: 0;
+}
+
+
+.our-story{
+    background-color: rgb(235, 235, 235);
+    padding-top: 3%;
+    display: flex;
+    column-gap: 0px;
+    width: 100%;
+    height: 100%;
+
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.story-header{
+    position: relative;
+    font-size: 4vmin;
+    font-family: 'Rubik Distressed', cursive;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: calc(auto - 5%);
+  
+   
+}
+.story-hr{
+
+    height:4px;
+    width: 5%;
+    color: rgb(0, 0 , 0);
+
+}
+.fourth-section{
+    top: 240%;
+    position: absolute;
+   
+    display: flex;
+    column-gap: 0px;
+    width: 100%;
+    height: 100%;
+
+    flex-direction: column;
+    z-index: 1;
+}
+
+
+.custom-shape-divider-bottom-1669834764 {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1669834764 svg {
+    position: relative;
+    display: block;
+    width: calc(145% + 1.3px);
+    height: 138px;
+}
+
+.custom-shape-divider-bottom-1669834764 .shape-fill {
+    fill: #000000;
+}
+.footer{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0);;
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+    row-gap: 4vmin;
+    padding-bottom: 5vmin;
+}
+.footer-header{
+    position: relative;
+
+    width: auto;
+    color: white;
+    font-size: 8vmin;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    row-gap: 0px;
+    flex-direction: column;
+    align-items: center;
+    height: calc(auto - 5%);
+  
+   
+}
+.footer-hr{
+
+    height:4px;
+    width: 10%;
+    color: rgb(255, 255, 255);
+
+}
+
+.footer-description{
+        width: 40%;
+        font-size: calc(3vmin / 2);
+        font-weight: 300;
+        font-family: 'Outfit', sans-serif;
+        text-align: center;
+        color: white;
+}
+.contact-options{
+    color: white;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+}
+.contact-option-desc{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(5vmin / 2);
+    display: flex;
+    width: 33%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.img-wrap{
+    height: auto;
+    width: 35%;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.map{
+    max-width: 100%;
+    max-height: 100%;
+    display: block; 
+    
+}
+.map-send-email{
+    width: 70%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2vmin;
+
+}
+.send-email{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+#name{
+    width: 100%;
+    height: auto;
+}
+#email{
+    width: 100%;
+    height: auto;
+}
+#message{
+    width: 100%;
+    height: 50%;
+}
