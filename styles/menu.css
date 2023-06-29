@@ -522,7 +522,7 @@ background-color: rgba(0,0,0,0.4);
     height: 8vmin;
     display: flex;
     justify-content: space-around;
-    background-color: rgb(243, 243, 243);
+    background-color: rgb(255, 255, 255);
     border-radius: 2%;
     border: 2px solid rgba(235, 235, 235, 1);
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.03);
@@ -829,3 +829,9 @@ input[type=number] {
 .return:hover{
     cursor: pointer;
 }
+
+a {
+    text-decoration: none !important;
+    color: black !important;
+  }
+  

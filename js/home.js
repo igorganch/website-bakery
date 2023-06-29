@@ -1,6 +1,6 @@
 $(document).ready(function(){
     console.log("hello");
-
+    /*
     let socket = io.connect('http://localhost:8080');
    
     socket.on("connect", function(){
@@ -34,4 +34,6 @@ $(document).ready(function(){
         
 
     })
+
+    */
 })

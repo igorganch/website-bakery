@@ -400,7 +400,7 @@ html,body{
 
 
 .table-header{
-    width: 11%;
+    width: 14%;
     height: 100%; 
     font-weight: 600;
     font-size: 2vmin;
@@ -458,7 +458,7 @@ html,body{
 
 }
 .equal-log-columns{
-    width: 11%;
+    width: 14%;
     height: 100%;
     font-size: calc(6vmin/3.5);
     font-family: 'Outfit', sans-serif;
@@ -468,6 +468,65 @@ html,body{
     
 
 }
+
+.equal-log-columns{
+    width: 14%;
+    height: 100%;
+    font-size: calc(6vmin/3.5);
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    
+
+}
+
+.equal-log-columns-address {
+    width: 20%;
+    height: 100%;
+    font-size: calc(6vmin/3.5);
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+.equal-log-columns-end {
+    width: 10%;
+    height: 100%;
+    font-size: calc(6vmin/3.5);
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+
+}
+
+.table-header-end{
+    width: 10%;
+    height: 100%; 
+    font-weight: 600;
+    font-size: 2vmin;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    align-items: center; /*remove to put font up */
+    justify-content: center; /*remove to put font up */
+    color: #ffffff;
+
+}
+
+.table-header-address{
+
+    width: 20%;
+    height: 100%; 
+    font-weight: 600;
+    font-size: 2vmin;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    align-items: center; /*remove to put font up */
+    justify-content: center; /*remove to put font up */
+    color: #ffffff;
+}
 .begin-text{
     text-align: start;
     
@@ -475,6 +534,9 @@ html,body{
 .center-text{
     text-align: center;
 
+}
+.yellow{
+    color: rgb(255, 187, 0);
 }
 
 .end-text{
@@ -486,12 +548,20 @@ html,body{
     
 
 }
-.password{
+.name{
     
     font-weight: 300;
     
     opacity: 0.6;
 }
+
+.address{
+    
+    font-weight: 300;
+    
+    opacity: 0.6;
+}
+
 
 .status{
     font-weight: 300;
@@ -524,7 +594,325 @@ html,body{
     align-items: center; 
     justify-content: center; 
 }
-.address{
-    font-weight: 300;
-    opacity: 0.6;
+
+.link{
+    color: blue;
 }
+.link:hover{
+    cursor: pointer;
+
+}
+#edit-product-modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left:10%;
+    justify-content: center;
+    align-items: flex-start;
+    top: 0;
+    width: 90%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .view-order-form{
+    height: 90%;
+    width: 40%;
+
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+
+
+    
+}
+.top-modal{
+    padding: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    row-gap: 1vmin;
+    align-items: center;
+
+}
+.bottom-modal{
+    padding: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(226, 226, 226);
+    column-gap: 4vmin;
+
+}
+
+.header-modal{
+    font-weight: 400;
+    font-size: 3vmin;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+  
+    display: flex;
+    
+    width: 100%;
+    column-gap: 1vmin;
+}
+
+.header-modal-txt{
+    font-weight: 400;
+    font-size: 3vmin;
+    font-family: 'Outfit', sans-serif;
+    color: black;
+}
+
+
+.lower-header-modal-txt{
+    font-weight: 400;
+    font-size: calc(5vmin / 2);
+    font-family: 'Outfit', sans-serif;
+    color: black;
+}
+.header-modal-qty{
+    font-weight: 300;
+    font-size: 2vmin;
+    font-family: 'Outfit', sans-serif;
+    color: black;
+    opacity: 0.6;
+    text-align: center;
+}
+.cart-body{
+    height: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+  
+
+}
+
+.cart-rows-header{
+    display: flex;
+    height: 5%;
+    width: 100%;
+    justify-content: space-around;
+}
+.cart-rows-header-text{
+    width: 19%;
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart-rows-header-remove{
+    width:  5%;
+    height: 100%;
+
+
+}
+.cart-rows{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    row-gap: 1vmin;
+}
+.cart-row{
+    width: 100%;
+    height: 8vmin;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(243, 243, 243);
+    border-radius: 2%;
+    border: 2px solid rgba(235, 235, 235, 1);
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.03);
+}
+
+
+.cart-rows-item-image{
+    width: 19%;
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.cart-rows-item-name{
+    width: 19%;
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart-rows-item-quantity{
+    width: 19%;
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: calc(1vmin /3 );
+   
+}
+.product-image-cart{
+    height: 7vmin;
+    width: 7vmin;
+    border-radius: 1vmin;
+}
+
+.cart-rows-item-price{
+    width: 19%;
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart-rows-item-total{
+    width: 19%;
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-rows-item-remove{
+    width: 5%;
+    height: 100%;
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cart-line {
+    color: grey;
+    height: 4px;
+    width: 100%;
+  }
+
+  .cart-line {
+    color: grey;
+    height: 4px;
+    width: 100%;
+  }
+
+  .column{
+    height: 100%;
+    width: 25%;
+    
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+  }
+
+  .header-column{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 500;
+
+  }
+  .column-attribute{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin / 2);
+    font-weight: 300;
+    opacity: 0.8;
+  }
+  .column-desc{
+    display: flex;
+    flex-direction: column;
+    row-gap: calc(3vmin / 2);
+  }
+
+  .shipping-total-price{
+    height: 20%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1vmin;
+}
+.shipping-total{
+    height: calc(3vmin/2);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.shipping-total-text{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin/2);
+    font-weight: 500;
+    width: 50%;
+    display: flex;
+    justify-content: start;
+}
+.shipping-total-value{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(3vmin/2);
+    width: 50%;
+    display: flex;
+    justify-content: end;
+}
+
+.full-cart{
+    height: calc(2vmin);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.full-cart-price{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(2vmin);
+    font-weight: 500;
+    width: 50%;
+    display: flex;
+    justify-content: start;
+}
+.full-cart-price-value{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(2vmin);
+    font-weight: 500;
+    width: 50%;
+    display: flex;
+    justify-content: end;
+}
+
+.product-category {
+    width: 100%;
+    height: 4vmin;
+    padding: 5px;
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 4px;
+    font-size: calc(3vmin/2);
+    background-color: #ffffff;
+  }
+
+  .green{
+
+    color: rgb(79, 238, 79);
+  }

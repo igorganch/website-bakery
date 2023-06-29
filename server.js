@@ -1,7 +1,16 @@
+if(process.env.NODE_ENV !== 'production'){
+    require("dotenv").config();
+
+}
+
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+console.log(stripeSecretKey , stripePublicKey)
+
 const express = require("express");
 const path = require("path");
+const stripe = require('stripe')(stripeSecretKey)
 const service = require("./Service.js");
-
 const clientSessions = require("client-sessions");
 const exphbs = require('express-handlebars');
 var bodyParser = require("body-parser");
@@ -12,6 +21,7 @@ const fs = require('fs');
 const { Console } = require("console");
 const { user } = require("pg/lib/defaults.js");
 const geoip = require('geoip-lite');
+const { data } = require("jquery");
 
 
 
@@ -134,7 +144,13 @@ app.use('/static', express.static(__dirname + '/styles'));
 app.use('/static', express.static(__dirname + '/images'));
 app.use('/static', express.static(__dirname + '/js'));
 app.use('/static', express.static(__dirname + '/node_modules'));
-app.engine('.hbs', exphbs.engine({ extname: '.hbs' }));
+app.engine('.hbs', exphbs.engine({ extname: '.hbs' ,
+    helpers : {
+        multiply: function(context, options){
+
+        }
+    }
+},));
 app.set('view engine', '.hbs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -155,6 +171,7 @@ app.use(clientSessions({
     duration: 30 * 60 * 1000, // duration of the session in milliseconds (2 minutes)
     activeDuration: 1000 * 60 * 2 // the session will be extended by this many ms each request (1 minute)
   }));
+
 
 
   
@@ -250,6 +267,10 @@ app.get("/", function(req, res){
 
 
 
+
+
+
+
 app.get("/menu", function(req, res){
 
     if(!req.cookies.user){
@@ -274,14 +295,22 @@ app.get("/menu", function(req, res){
             page : "home",
             status: "true",
             location : geo.country + ", " + geo.city,
-            updatedAt :""
+            updatedAt :"",
+            orderId : ""
         }
         service.addCustomer(data).then(function(datat){
             console.log(datat);
             data.updatedAt = datat.updatedAt;
             service.getAllStock().then(function(products){
                 service.getAllCategories().then(function(categories){
-                    res.cookie('user', { user : data}).render('menu', { product : products, category : categories, layout: false, });
+                    service.getAllDelivery().then(function(delivery){
+
+                        res.cookie('user', { user : data}).render('menu', { product : products, category : categories, delivery : delivery, layout: false, });
+
+                    }).catch(function(err){
+                        console.log(err);
+                    })
+                    
         
                 }).catch(function(err){
                     console.log(err);
@@ -298,8 +327,12 @@ app.get("/menu", function(req, res){
 
             service.getAllCategories().then(function(categories){
                 service.getCart(req.cookies.user.user.cookie).then(function(cart){
-                    
-                    res.cookie('user', { user : req.cookies.user.user}).render('menu', { product : products, category : categories, cart : cart, layout: false, });
+                    service.getAllDelivery().then(function(delivery){
+
+                          res.cookie('user', { user : req.cookies.user.user}).render('menu', { product : products, category : categories, delivery : delivery, cart : cart, layout: false, });
+
+                    })
+                  
 
                 }).catch(function(err){
 
@@ -324,6 +357,20 @@ app.get("/menu", function(req, res){
     
 
 });
+
+app.get("/menu/product/:id", function(req,res){
+    service.getOneStock(req.params.id).then(function(data){
+
+        res.render('productPage' , { product : data , layout : false});
+
+    }).catch(function(err){
+
+        console.log(err);
+
+    })
+
+
+})
 
 app.get("/cart",function(req,res){
     console.log(req.cookies.user.user.cookie);
@@ -384,15 +431,92 @@ app.post("/adminlogin" , function(req,res){
 
 });
 app.get("/adminpannel",ensureLogin, function(req,res){
-   res.render('dashboard', {layout : false} ); 
+    service.getOrders().then(function(data){
+
+          
+        res.render('dashboard', {layout : false, Orders :data} ); 
+
+
+    }).catch(function(err){
+
+        console.log(err);
+
+    })
+   
+
 
 
 
 });
 
+app.get("/order/:id", ensureLogin, function(req,res){
+    service.getOrderById(req.params.id).then(function(data){
+        res.send(data);
+
+    }).catch(function(err){
+
+        console.log(err);
+    })
+
+
+})
+
+
+
+app.get("/dashboard/orders", ensureLogin, function(req,res){
+    service.getOrders().then(function(data){
+
+        res.render('dashboardOrders', {layout : false, Orders :data} ); 
+
+    }).catch(function(err){
+
+        console.log(err);
+
+    })
+
+
+})
+
+app.get("/orders/today", ensureLogin, function(req,res){
+    service.getOrdersLast24hours().then(function(data){
+        res.send(data);
+
+    }).catch(function(err){
+
+        console.log(err);
+    })
+    
+
+})
+
+app.get("/orders/yesterday", ensureLogin, function(req,res){
+    service.getOrdersYesterday().then(function(data){
+        res.send(data);
+
+    }).catch(function(err){
+
+        console.log(err);
+    })
+    
+})
+
+app.get("/orders/update/shipping/:tf&:id", ensureLogin, function(req,res) {
+    console.log(req.params.tf);
+    console.log(req.params.id);
+    service.updateDeliveryStatusOrder(req.params.tf, req.params.id).then(function(){
+
+
+        res.json({success: "Success" , status : 200});
+    }).catch(function(err){
+        console.log(err)
+    })
+
+
+})
+
+
 app.get("/dashboard/visitors",ensureLogin,function(req,res){
     service.getAllCustomers().then(function(data){
-        console.log(data);
         res.render('dashboardVisitors', {user : data, layout:false});
     }).catch(function(err){
         console.log(err);
@@ -405,7 +529,6 @@ app.get("/dashboard/visitors",ensureLogin,function(req,res){
 
 app.get("/dashboard/products", ensureLogin, function(req,res){
     service.getAllStock().then(function(result){
-        console.log(result);
         res.render('dashboardProducts', { product : result, layout:false});
 
     }).catch(function(err){
@@ -415,12 +538,47 @@ app.get("/dashboard/products", ensureLogin, function(req,res){
     
 
 });
+app.get("/dashboard/options", ensureLogin, function(req,res){
+    service.getStoreInfo().then(function(data){
+        
+        res.render('dashboardOptions', {options : data,  layout:false} )
+
+    }).catch(function(err){
+        console.log("ERRRRRRRR : " + err);
+    })
+   
+
+
+})
+
+app.post("/storeoptions",ensureLogin, function(req,res){
+    
+    console.log(req.body)
+    service.updateStoreInfo(req.body).then(function(data){
+        res.json({success: "Success" , status : 200});
+
+    }).catch(function(err){
+        console.log("ERRRRRRRR : " + err);
+    });
+
+
+})
+app.get("/storelocation", function(req,res){
+    service.getStoreLocation().then(function(data){
+
+        res.json(data[0]);
+    }).catch(function(err){
+        console.log("ERRRRRRRR : " + err);
+    });
+
+
+
+})
+
 
 
 app.get("/dahsboard/products/updatePage/:id", ensureLogin, function(req,res){
     service.getOneStock(req.params.id).then(function(data){
-        console.log(data);
-        console.log(data[0]);
         res.render("dashboardUpdateProduct", {product: data[0], layout : false});
 
     }).catch(function(err){
@@ -432,10 +590,197 @@ app.get("/dahsboard/products/updatePage/:id", ensureLogin, function(req,res){
 });
 
 
+app.get('/update/cart/:id&:quantity', function(req,res){
+    service.updateItemQuantity(req.cookies.user.user.cookie, req.params.id, req.params.quantity).then(function(){
 
-app.get('/add/cart/:productId', function(req,res){
+    }).catch(function(err){
+
+        console.log(err);
+    })
+
+})
+
+
+
+app.get('/checkout', function(req,res){
+    if(req.cookies.user){
+    service.getCart(req.cookies.user.user.cookie).then(async function(data){
+
+        console.log(parseInt(data.dataValues.total) )
+        var totalCost = (data.dataValues.Delivery.dataValues.price  + data.dataValues.total).toFixed(2);
+        var total = (data.dataValues.Delivery.dataValues.price  + data.dataValues.total ) * 100;
+        const paymentIntent = await stripe.paymentIntents.create({
+            amount: total,
+            currency: 'usd',
+            payment_method_types: ['card'],
+        });
+
+        console.log(paymentIntent);
+        
+        service.getAllDelivery().then(function(delivery){
+            console.log("#$!@%$!@%#%$5354444=====================================================" + stripePublicKey)
+            res.render('checkout', { stripePublicKey : stripePublicKey , total : totalCost, clientSecret : paymentIntent.client_secret, paymentIntentid : paymentIntent.id,  cart : data, delivery : delivery, layout: false, });
+        }).catch(function(){
+
+            res.render('home', {layout : false});
+        })
+    }).catch(function(err){
+        console.log(err)
+        res.render('home', {layout : false});
+    })
+
+    }
+    else{
+        res.render('home', {layout : false});
+    }
+
+})
+
+app.get('/updateamount/:amount&:clientSecret&:method', async  function(req, res){
+    const cs  = req.params.clientSecret;
+    const amount  = req.params.amount;
+   // const method = req.params.method;
+    console.log(cs);
+    console.log(amount);
+   // console.log(method)
+
+    const paymentIntent = await stripe.paymentIntents.update(  cs, {
+        amount : amount}
+    ).then(function(data){
+        console.log("Success")
+
+        service.updateDeliveryMethod(req.cookies.user.user.cookie, req.params.method).then(function(){
+
+            res.json({success: "Success" , status : 200});
+        }).catch(function(err){
+
+            console.log(err);
+            res.json({ status : 409});
+        })
+       
+
+      })
+      .catch(function(err){
+        console.log("ERROR")
+        res.json({ status : 409});
+      })
+   
+  
+})
+
+
+app.get('/success', async function(req,res){
+    console.log("!!!!!!!!!!!!@@@@@@@@@@@@###############SUCCESS=1=2-12-1=2=12=2=21=")
+    if(req.cookies.user){
+        const paymentIntent = await stripe.paymentIntents.retrieve(req.query.payment_intent);
+        console.log(paymentIntent)
+        service.getCart(req.cookies.user.user.cookie).then(async function(cart){ 
+            service.createOrder( req.cookies.user.user.cookie, paymentIntent).then(function(data){    
+                console.log("In createOrder");
+                res.render('checkoutSuccess', { order : data,layout : false});
+        
+            }).catch(function(err){
+                console.log(err)
+                res.json({ status : 409});
+             });
+        }).catch(function(err){
+            console.log(err)
+            
+        })
+
+    }
+    else{
+        res.render('home', {layout : false});
+    }
+
+})
+
+app.post('/checkout' , function(req,res){
+    console.log("!!!!!!!!!!!!@@@@@@@@@@@@###############POSTED=1=2-12-1=2=12=2=21=")
+    if(req.cookies.user){
+        service.getCart(req.cookies.user.user.cookie).then(async function(cart){ 
+            console.log("In getCart");
+            console.log(req.body);
+         service.createOrder( req.cookies.user.user.cookie, req.body).then(function(data){    
+            
+            console.log("In createOrder");
+            req.cookies.user.user.orderId = data.dataValues.id;
+            res.cookie('user', { user : req.cookies.user.user})          
+        
+            }).catch(function(err){
+                console.log(err)
+                res.json({ status : 409});
+             });
+        }).catch(function(err){
+            console.log(err)
+            
+        })
+
+    }
+    else{
+        res.render('home', {layout : false});
+    }
+
+})
+
+app.get("/checkout/success", function(req,res){
+    if(req.cookies.user){
+        console.log("/checkout/success")
+        console.log(req.cookies.user.user);
+        service.getOrderById(req.cookies.user.user.orderId).then(function(data){
+            console.log(data.dataValues)
+            res.render('checkoutSuccess', { order : data,layout : false});
+        })
+
+    }
+    else{
+        res.render('home', {layout : false});
+    }
+})
+app.get("/order/:id")
+
+app.get('/updateDelivery/:method' , function(req,res){
+    if(req.cookies.user){
+        service.updateDeliveryMethod(req.cookies.user.user.cookie, req.params.method).then(function(){
+
+            res.json({success: "Success" , status : 200});
+        }).catch(function(err){
+
+            console.log(err);
+        })
+
+    }
+    else{
+        res.render('home', {layout : false});
+    }
+
+})
+
+app.get('/delivery', function(req,res){
+    service.getCartDelivery().then(function(data){
+        res.json(data);
+
+    }).catch(function(err){
+        console.log("ERRRRRRRR : " + err);
+
+    }); 
+
+})
+app.get("/checkout/storehours", function(req,res){
+    service.getStoreInfo().then(function(data){
+     
+        res.json(data);
+
+    }).catch(function(err){
+        console.log("ERRRRRRRR : " + err);
+    })
+
+})
+
+
+
+app.get('/add/cart/:productId', async function(req,res){
     if(!req.cookies.user){
-        console.log(" in here" + req.cookies.length)
         var cookie = uuidv4();
         var ipAddr = req.headers["x-forwarded-for"];
         var userAgent = req.headers["user-agent"];
@@ -458,8 +803,8 @@ app.get('/add/cart/:productId', function(req,res){
             location : geo.country + ", " + geo.city,
             updatedAt :""
         }
-        service.addCustomer(data).then(function(datat){
-            service.addItemToCart(datat.cookie,req.params.id).then(function(){
+        service.addCustomer(data).then(async function(datat){
+           await service.addItemToCart(datat.cookie,req.params.id).then(function(){
                 res.cookie('user', { user : data}).json({success: "Deleted" , status : 200});
             }).catch(function(err){
                 console.log(err);
@@ -470,7 +815,7 @@ app.get('/add/cart/:productId', function(req,res){
         })
     }
     else{
-        service.addItemToCart(req.cookies.user.user.cookie ,req.params.productId).then(function(){
+        await service.addItemToCart(req.cookies.user.user.cookie ,req.params.productId).then(function(){
             res.json({success: "Added" , status : 200});
         }).catch(function(err){
             console.log(err);
@@ -491,15 +836,19 @@ app.delete("/delete/cart/:id", function(req,res){
 
 })
 
+
+
+
+
 app.post("/dashbaord/products/update/:id",upload.array('imageupload'), ensureLogin, async function(req,res){
-    console.log(req.files);
+
     await service.getOneStock(req.params.id).then(async function(data){
         for (let i = 0; i < data[0].dataValues.Images.length; i++){
             let path = data[0].dataValues.Images[i].path;
             let fileName = path.slice(path.lastIndexOf("/") + 1);
        
             fs.unlinkSync("./images/" +   fileName);
-           console.log("Unlink - " + path);
+         //  console.log("Unlink - " + path);
 
         }
         if(req.body.unlimitedQuantity == 'on'){
@@ -539,7 +888,6 @@ app.post("/dashbaord/products/update/:id",upload.array('imageupload'), ensureLog
 })
 app.get("/dashboard/products/getCategories", ensureLogin, function(req,res){
     service.getAllCategories().then(function(data){
-        console.log(data);
         res.json(data);
     }).catch(function(err){
 
@@ -549,7 +897,6 @@ app.get("/dashboard/products/getCategories", ensureLogin, function(req,res){
 
 })
 app.post("/dashboard/add/category", ensureLogin, function(req,res){
-    console.log(req.body);
     service.addCategory(req.body).then(function(data){
         console.log(data);
         res.json(data);
@@ -599,8 +946,8 @@ app.get("/dashboard/products/add", ensureLogin, function(req,res){
 })
 
 app.post("/dashboard/products/add",upload.array('imageupload'), ensureLogin, function(req,res){
-    console.log(req.files);
-    console.log((req.files).length);
+ //   console.log(req.files);
+ //   console.log((req.files).length);
 
    
 
@@ -641,10 +988,8 @@ app.post("/dashboard/products/add",upload.array('imageupload'), ensureLogin, fun
 
 app.get("/dashboard", ensureLogin, function(req,res){
     service.searchadminlogs(req.session.user.id).then(function(data){
-        console.log(data);
         data.url =  req.session.user.specialurl;
         data.admin = req.session.user.id;
-        console.log("data.admin--------------------------" + req.session.user.id);
         res.render('dashboard', {  user : data, layout: false, });
 
     }).catch(function(){
@@ -658,10 +1003,8 @@ app.get("/dashboard", ensureLogin, function(req,res){
 
 
 app.post("/", function(req, res){
-    console.log(req.body.username);
     service.searchadmin(req.body.username).then(function(data){
-            console.log(data[0].password);
-            console.log(req.body.password);
+
             if (data[0].password == req.body.password){
                 var newspamurl=  data[0].id + uuidv4();
                 service.updateUrlAdmin(data[0].id,newspamurl);
@@ -759,7 +1102,7 @@ app.post("/verify", function(req,res){
 
     function ensureLogin(req, res, next) {
         if (!req.session.user) {
-          res.redirect("/");
+          res.redirect("/adminlogin");
         } else {
           next();
         }

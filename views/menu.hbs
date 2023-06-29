@@ -1,9 +1,11 @@
 <!DOCTYPE html>
     <html lang="en">
+        <head>
         <link rel="stylesheet" type="text/css" href="/static/menu.css">
                 <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
         integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
         crossorigin="anonymous"></script>
+          <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
         <script src="https://kit.fontawesome.com/243ba828f2.js" crossorigin="anonymous"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>   
@@ -12,29 +14,29 @@
         <title>Menu</title>
         <meta name="viewport" content="width=device-width,initial-scale=1">
         
-       
+       </head>
   
         <body>
             
                 <div class = "header">
                     <div class = "divider-header">
                         <div class = "header-options"> 
-                            ABOUT
+                            <a href ="/">ABOUT</a>
                         </div>
                         <div class = "header-options"> 
-                            MENU
+                            <a href ="/menu">MENU</a>
                         </div>
 
                         <div class = "header-options-logo"> 
-                        DOYDOY'S &nbsp;&nbsp;BAKE&nbsp;&nbsp;SHOP
+                        <a href ="/">DOYDOY'S &nbsp;&nbsp;BAKE&nbsp;&nbsp;SHOP</a>
                         </div>
 
                         <div class = "header-options"> 
-                            CONTACT&nbsp;&nbsp;US
+                            <a href ="/">CONTACT&nbsp;&nbsp;US</a>
                         </div>
 
                         <div class = "header-options"> 
-                            LOGIN
+                           <a href ="/">LOGIN</a> 
                         </div>
                     </div>   
                     <div class="divider-icons">
@@ -94,8 +96,9 @@
                                 <div class="shipping-details">
                                     <div class = "shipping-info-text">SHIPPING</div>
                                     <select name="shipping-options" id="shipping-options" class="shipping-selector" type="number" required="">
-                                        <option name = "international standard" value="7.80">International Standard - 7.80</option>
-                                        <option name="local shipping" value="3.78">Local Shipping - 3.78</option>
+                                        {{#each delivery}}
+                                        <option name = '{{this.dataValues.DeliveryType}}' value='{{this.dataValues.price}}'>{{this.dataValues.DeliveryType}} - ${{this.dataValues.price}}.00</option>
+                                        {{/each}}
                                     </select>
 
                                 </div>
@@ -232,11 +235,13 @@
                     <div class = "products">
                                 {{#each product}}
                                 <div class = "product">
+                                     <a href='/menu/product/{{this.dataValues.id}}'>
                                     {{#each this.dataValues.Images}}
                                         {{#if this.dataValues.main}}
-                                          <img class = "product-image" src = '{{this.dataValues.path}}'>
+                                         <img class = "product-image" src = '{{this.dataValues.path}}'>
                                         {{/if}}
                                     {{/each}}
+                                    </a>
 
                                     <div class = "product-info">
                                         <div class = "weight-quantity">
@@ -249,7 +254,7 @@
                                                 <div class="weight-quantity-text">{{this.dataValues.weight}} {{this.dataValues.unit}}</div>
                                             </div>
                                         </div>
-                                        <div id ='{{this.dataValues.id}}-name'class = "product-header-item">
+                                        <div id ='{{this.dataValues.id}}-name' class = "product-header-item">
                                               {{this.dataValues.productName}} 
                                         </div>
                                         <div class="price-desc">
@@ -283,7 +288,7 @@
 
 
             </div>
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+           
             <script src="/static/menu.js"></script>
 
         </body>

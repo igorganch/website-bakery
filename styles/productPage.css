@@ -1,0 +1,777 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans+Extra+Condensed:wght@100&display=swap');
+
+html, body{
+    height: auto;
+    width: auto;
+}
+.page{
+    position: absolute;
+    top:7%;
+    height:93%;
+    width: 100%;
+    padding-top: 2%;
+    flex-direction: column;
+    row-gap: 3vmin;
+    display: flex;
+    align-items: center;
+    
+}
+.header{
+    height: 7%;
+    width : 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    position: absolute;
+    top:0;
+    justify-content: space-evenly;
+    align-items: center;
+    font-family: 'Outfit', sans-serif;
+    z-index:  3;
+    border-bottom: 1px solid rgba(212, 212, 212, 0.5);
+    box-shadow: 3px 0px 8px rgba(212, 212, 212, 1) ;
+    
+   
+
+}
+.header-container{
+    
+}
+
+.header-options{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 400;
+    font-size: 2vmin;
+    width: 20%;
+   
+    text-align: center;
+}
+.header-options-logo{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    font-size: 4vmin;
+    width: 25%;
+ 
+    text-align: center;
+
+}
+.divider-header{
+    width: 95%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.divider-icons{
+    width: 5%;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+
+}
+.upper-menu-section{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    height: 5%;
+
+}
+
+.product-body{
+    width: 59%;
+    height: 90%;
+    
+    display: flex;
+    justify-content: center;
+    column-gap: 0;
+}
+
+.product-info{
+    height: 100%;  
+    width: 50%;
+    background-color: rgb(243, 243, 243);
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+.images{
+    height: 100%;  
+    width: 50%;
+    
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    row-gap: 1vmin;
+    align-items: center;
+
+}
+.product-image{
+    height: 51vmin;
+    width: 51vmin;
+    
+}
+.product-header{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: calc(10vmin / 2) ;
+
+}
+.category{
+    font-family: 'Sofia Sans Extra Condensed', sans-serif;
+    font-size: calc(8vmin / 2) ;
+}
+.price{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    font-size: calc(7vmin / 2) ;
+    opacity: 0.9;
+
+}
+.description{
+    width: 100%;
+    height: 45%;
+  
+}
+.description-header{
+    font-size: calc(3vmin / 1.8);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    width: 100%;
+}
+.description-text{
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    font-size: calc(3vmin / 1.8);
+    width: 100%;
+}
+.weight-quantity{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+.weight-quantity-text {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 200;
+    font-size: calc(5vmin/2);
+    color: #a0a0a0;
+    text-align: center;
+  }
+.weight{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.quantity{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.add-to-cart {
+    background-color: rgb(255, 153, 0);
+    color: white;
+    font-size: calc(4vmin /2);
+    font-family: 'Rubik Distressed', cursive;
+    font-weight: 300;
+    border: none;
+    width: 80%;
+    height: 5vmin;
+    text-align: center;
+    justify-content: center;
+    border-radius: 1vmin;
+  }
+  .button-container{
+    height: 5vmin;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+  }
+  .product-small-image{
+    height: 6vmin;
+    width: 6vmin;
+    
+
+  }
+  .blue-border{
+    border: 2px solid rgb(106, 183, 255);
+}  
+.image-tray{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 1vmin;
+}
+
+
+.fourth-section{
+
+
+    position: absolute;
+    display: flex;
+    column-gap: 0px;
+    width: 100%;
+  
+    top: 90%;
+    flex-direction: column;
+    z-index: 1;
+}
+
+
+.custom-shape-divider-bottom-1669834764 {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1669834764 svg {
+    position: relative;
+    display: block;
+    width: calc(145% + 1.3px);
+    height: 138px;
+}
+
+.custom-shape-divider-bottom-1669834764 .shape-fill {
+    fill: #000000;
+}
+.footer{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0);;
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+    row-gap: 4vmin;
+    padding-bottom: 5vmin;
+}
+.footer-header{
+    position: relative;
+
+    width: auto;
+    color: white;
+    font-size: 8vmin;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    width: 100%;
+    display: flex;
+    row-gap: 0px;
+    flex-direction: column;
+    align-items: center;
+    height: calc(auto - 5%);
+  
+   
+}
+.footer-hr{
+
+    height:4px;
+    width: 10%;
+    color: rgb(255, 255, 255);
+
+}
+
+.footer-description{
+        width: 40%;
+        font-size: calc(3vmin / 2);
+        font-weight: 300;
+        font-family: 'Outfit', sans-serif;
+        text-align: center;
+        color: white;
+}
+.contact-options{
+    color: white;
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+}
+.contact-option-desc{
+    font-family: 'Outfit', sans-serif;
+    font-size: calc(5vmin / 2);
+    display: flex;
+    width: 33%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+.img-wrap{
+    height: auto;
+    width: 35%;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.map{
+    max-width: 100%;
+    max-height: 100%;
+    display: block; 
+    
+}
+.map-send-email{
+    width: 70%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2vmin;
+
+}
+.send-email{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+#name{
+    width: 100%;
+    height: auto;
+}
+#email{
+    width: 100%;
+    height: auto;
+}
+#message{
+    width: 100%;
+    height: 50%;
+}
+
+
+#user-cart-modal{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+    }
+    
+    .item-quantity-input-page{
+        width: calc(5vmin/2);
+        height: calc(5vmin/2);
+        text-align: center;
+        font-size: 1vmin;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 300;
+    
+    
+    }
+    /***CART MODAL****/
+    .user-cart{
+        background-color: white;
+        height: 65vmin;
+        width: 110vmin;
+        
+        display: flex;
+        
+    
+    }
+    .cart-line{
+        color: grey;
+        height : 4px; 
+        width: 100%;
+     
+        
+    }
+    
+    .header-user-cart-text{
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin);
+        font-weight: 500;
+    }
+    .header-user-cart{
+        height: 15%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2px;
+      
+    }
+    .cart-body{
+        height: 75%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+    
+    }
+    .cart-footer{
+        height: 10%;
+        width: 100%;
+    
+        display: flex;
+        justify-content: start;
+        align-items: end;
+    
+    }
+    
+    .cart-rows{
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        row-gap: 1vmin;
+    }
+    .cart-row{
+        width: 100%;
+        height: 8vmin;
+        display: flex;
+        justify-content: space-around;
+        background-color: rgb(243, 243, 243);
+        border-radius: 2%;
+        border: 2px solid rgba(235, 235, 235, 1);
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.03);
+    }
+    .container-cart{
+        height: 100%;
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        padding: 2vmin;
+    }
+    .user-cart-total{
+        height: 100%;
+        width : 30%;
+        background-color: rgba(235, 235, 235, 1);
+        padding: 2vmin;
+    }
+    .cart-rows-header{
+        display: flex;
+        height: 5%;
+        width: 100%;
+        justify-content: space-around;
+    }
+    .cart-rows-header-text{
+        width: 19%;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 200;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .cart-rows-header-remove{
+        width:  5%;
+        height: 100%;
+    
+    
+    }
+    .cart-rows-item-image{
+        width: 19%;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    .cart-rows-item-name{
+        width: 19%;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .cart-rows-item-quantity{
+        width: 19%;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 300;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        column-gap: calc(1vmin /3 );
+       
+    }
+    .item-quantity-input{
+        width: calc(5vmin/2);
+        height: calc(5vmin/2);
+        text-align: center;
+        font-size: 1vmin;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 300;
+    
+    
+    }
+    
+    .fa-plus:hover {
+        cursor: pointer;
+    }
+    .fa-minus:hover {
+        cursor: pointer;
+    }
+    
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    
+    /* Firefox */
+    input[type=number] {
+      -moz-appearance: textfield;
+    }
+    .cart-rows-item-price{
+        width: 19%;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 300;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .cart-rows-item-total{
+        width: 19%;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .cart-rows-item-remove{
+        width: 5%;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .product-image-cart{
+        height: 7vmin;
+        width: 7vmin;
+        border-radius: 1vmin;
+    }
+    .header-user-cart-total-text{
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin);
+        font-weight:500;
+    }
+    .cart-total-body{
+        height: 85%;
+        width: 100%;
+    
+    }
+    .order-info-quantity{
+        height: 5%;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .order-items-quantity{
+        height: 100%;
+        width: 30%;
+        display: flex;
+    }
+    .order-info-text{
+        height: 100%;
+        width: 50%;
+            height: 100%;
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    }
+    .order-info-price{
+        height: 100%;
+        width: 20%;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .shipping-info-text{
+        height: 3vmin;
+        width: 50%;
+        
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+    
+    
+    }
+    .shipping-details{
+        height: 30%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    
+        justify-content: center;
+        row-gap: 1vmin;
+    }
+    .shipping-selector{
+        width: 100%;
+        height: 4vmin;
+        padding: 5px;
+        border: 1px solid rgb(255, 255, 255);
+        border-radius: 4px;
+        background-color: white;
+        font-size: calc(3vmin /2);
+        color: #6a6a6a;
+    }
+    .shipping-total-price{
+        height: 40%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1vmin;
+    }
+    .shipping-total{
+        height: calc(3vmin/2);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .shipping-total-text{
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin/2);
+        font-weight: 500;
+        width: 50%;
+        display: flex;
+        justify-content: start;
+    }
+    .shipping-total-value{
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin/2);
+        width: 50%;
+        display: flex;
+        justify-content: end;
+    }
+    .full-cart{
+        height: calc(2vmin);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .full-cart-price{
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(2vmin);
+        font-weight: 500;
+        width: 50%;
+        display: flex;
+        justify-content: start;
+    }
+    .full-cart-price-value{
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(2vmin);
+        font-weight: 500;
+        width: 50%;
+        display: flex;
+        justify-content: end;
+    }
+    .checkout-button-cart{
+        background-color: rgb(255, 153, 0);
+        color: white;
+        font-size: calc(3vmin /2);
+        font-family: 'Rubik Distressed', cursive;
+        font-weight: 300;
+        border: none;
+        width: 100%;
+        height: 4vmin;
+        text-align: center;
+        justify-content: center;
+    }
+    .button-container{
+        height: 7vmin;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .return{
+        display: flex;
+        width: auto;
+      
+        justify-content: start;
+        align-items: center;
+        column-gap: calc(3vmin /2);
+       
+    }
+    .blue{
+        color: #00a3de;
+    }
+    .return-text{
+        width: auto;
+        height: 100%;
+        font-family: 'Outfit', sans-serif;
+        font-size: calc(3vmin / 2);
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .return:hover{
+        cursor: pointer;
+    }
+
+    .order-online {
+        background-color: rgb(255, 153, 0);
+        color: white;
+        font-size: 3vmin;
+        font-family: 'Rubik Distressed', cursive;
+        font-weight: 300;
+        border: none;
+        width: 40%;
+        height: auto;
+      }
+
+        #message {
+        width: 100%;
+        height: 50%;
+      }
+
+      #email {
+        width: 100%;
+        height: auto;
+      }
+
+      #name {
+        width: 100%;
+        height: auto;
+      }
+      a {
+        text-decoration: none !important;
+        color: black !important;
+      }
+    

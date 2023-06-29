@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <link rel="stylesheet" type="text/css" href="/static/productPage.css">
+                <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/243ba828f2.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>   
+
+        <meta charset="UTF-8">
+        <title>Menu</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        
+       
+  
+        <body>
+            
+                <div class = "header">
+                    <div class = "divider-header">
+                        <div class = "header-options"> 
+                            <a href ="/">ABOUT</a>
+                        </div>
+                        <div class = "header-options"> 
+                            <a href ="/menu">MENU</a>
+                        </div>
+
+                        <div class = "header-options-logo"> 
+                        <a href ="/">DOYDOY'S &nbsp;&nbsp;BAKE&nbsp;&nbsp;SHOP</a>
+                        </div>
+
+                        <div class = "header-options"> 
+                            <a href ="/">CONTACT&nbsp;&nbsp;US</a>
+                        </div>
+
+                        <div class = "header-options"> 
+                           <a href ="/">LOGIN</a> 
+                        </div>
+                    </div>   
+                    <div class="divider-icons">
+                        <i class="fa-sharp fa-solid fa-user fa-lg"></i>
+                       <i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i>
+                    </div>
+                    
+                </div>
+            <div class="page">
+
+                                <div id="user-cart-modal" >
+                   
+                    <div class = "user-cart">
+                        <div class="container-cart">
+                            <div class = "header-user-cart">
+                                <div class="header-user-cart-text">Shopping Cart</div>
+                                <hr class="cart-line">
+                            </div>
+                            <div class = "cart-body">
+                                <div class="cart-rows-header">
+                                    <div class="cart-rows-header-text">Product</div>
+                                    <div class="cart-rows-header-text"></div>
+                                    <div class="cart-rows-header-text">Quantity</div>
+                                    <div class="cart-rows-header-text">Price</div>
+                                    <div class="cart-rows-header-text">Total</div>
+                                    <div class="cart-rows-header-remove"></div>
+                                </div>
+                                <div class="cart-rows">
+                                    
+                                
+                                </div>
+                            </div>
+                            <div class="cart-footer">
+                                <div  class="return">
+                                    <i class="fa-sharp fa-solid fa-chevron-left fa-sm blue" ></i>
+                                    <div class="cart-rows-item-name blue">Return</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-cart-total">
+                            <div class = "header-user-cart">
+                                <div class="header-user-cart-total-text">Order Summary</div>
+                                <hr class="cart-line">
+                            </div>
+                            <div class = "cart-total-body">
+                                <div class="order-info-quantity">
+                                    <div class="order-items-quantity">
+                                         <div id = "number-items" class = "order-info-text"></div>
+                                         <div class = "order-info-text">ITEMS</div>
+                                    
+                                    </div>
+                                    <div  id = "cost-items" class ="order-info-price">
+                                    </div>
+                                   
+                                    
+                                </div>
+                                <div class="shipping-details">
+                                    <div class = "shipping-info-text">SHIPPING</div>
+                                    <select name="shipping-options" id="shipping-options" class="shipping-selector" type="number" required="">
+                                        <option name = "international standard" value="7.80">International Standard - 7.80</option>
+                                        <option name="local shipping" value="3.78">Local Shipping - 3.78</option>
+                                    </select>
+
+                                </div>
+                                <div class="shipping-total-price">
+                                    <hr class="cart-line">
+                                    <div class = "shipping-total">
+                                        <div class="shipping-total-text">
+                                            SHIPPING
+                                        </div>
+                                        <div id = "total-shipping-cost" class="shipping-total-value">
+                                            6.70
+                                        </div>
+
+                                    </div>
+                                    <div class = "shipping-total">
+                                        <div class="shipping-total-text">
+                                            ITEMS 
+                                        </div>
+                                        <div id = "total-item-cost" class="shipping-total-value">
+                                            61.67
+                                        </div>
+
+                                    </div>
+                                    <div class = "full-cart">
+                                        <div class="full-cart-price">
+                                            TOTAL
+                                        </div>
+                                        <div id = "total-cost-shipping-items" class="full-cart-price-value">
+                                            67.87
+                                        </div>
+
+                                    </div>
+                                    <div class="button-container">
+                                        <button class="checkout-button-cart">CHECKOUT</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+      
+                  
+                </div>
+         
+
+                 {{#each product}}
+                <div class = "product-body">
+                    <div class="images">
+                        {{#each this.dataValues.Images}}
+                            {{#if this.dataValues.main}}
+                        <img class = "product-image" src = '{{this.dataValues.path}}'>        
+                            {{/if}}
+
+                        {{/each}}
+                        
+                        <div class="image-tray">
+                                                    {{#each this.dataValues.Images}}
+                            {{#if this.dataValues.main}}
+                                <img class = "product-small-image blue-border" src = '{{this.dataValues.path}}'>
+                            {{else}}
+                                <img class = "product-small-image" src = '{{this.dataValues.path}}'>
+                            {{/if}}
+                        {{/each}}
+                        </div>
+
+                    </div>
+
+                    <div class="product-info">
+                        <div id = '{{this.dataValues.id}}-name' class = "product-header">
+                                {{this.dataValues.productName}} 
+                            </div>
+                        <div class = "category">
+                            
+                                {{this.dataValues.Category}} 
+                            </div>
+
+                        <div id = '{{this.dataValues.id}}-price' class = "price">
+                            
+                                ${{this.dataValues.price}}0
+                        </div>
+
+                        <div class = "description">
+                            <div class="description-header">
+                                Description
+                            </div>
+                            <div class="description-text">
+                                For more order inquiries please send us an email and arangment can be made. Our location. vLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. 
+                            </div>
+                        </div>
+
+                        <div class = "weight-quantity">
+                            <div class="weight">
+                                <i class="fa-sharp fa-solid fa-box-open fa-3x"></i>
+                                <div class="weight-quantity-text">
+                                    {{this.dataValues.weight}}/{{this.dataValues.unit}} 
+                                </div>
+                            </div>
+                            <div class="quantity">
+                                <i class="fa-sharp fa-solid fa-weight-scale fa-3x"></i>
+                                <div class="weight-quantity-text">
+                                     {{this.dataValues.perunit}} per box
+                                </div>
+                            </div>
+                        </div>
+                        <div class= "button-container">
+                            <button id = '{{this.dataValues.id}}-add-to-cart' class = "add-to-cart">
+                                ADD TO CART
+                            </button>
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+                {{/each}}
+ 
+                <div class = " fourth-section">
+                    <div class="custom-shape-divider-bottom-1669834764">
+                        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+                        </svg>
+                    </div>
+                    <div class="footer">    
+                        <div class ="footer-header">
+                            <div class="footer-header-text">CONTACT</div>
+                            <div class="footer-description">
+                                For more order inquiries please send us an email and arangment can be made. Our location. vLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+                            </div>
+                        </div>                         
+
+                        <div class = "contact-options">
+                            <div class ="contact-option-desc">
+                                <i class=" fa-sharp fa-solid fa-envelope fa-2x"></i>
+                                <div>
+                                    dudoybakery@gmail.com
+                                </div>
+                            </div>
+                            <div class ="contact-option-desc">
+                                <i class=" fa-sharp fa-solid fa-phone fa-2x"></i>
+                                <div>
+                                    +9 (343) - 4353- 45455
+                                </div>
+                            </div>
+                            <div class ="contact-option-desc">
+                                <i class="fa-solid fa-location-dot fa-2x"></i>
+                                <div>
+                                    130 Market St, M34R343
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class = "map-send-email">
+                            <div class = "img-wrap">
+                                <img class="map" src="/static/map.PNG"> 
+                            </div>
+                            <form class ="send-email">
+                                    <input type="text" id = "name" placeholder="Your name: ">
+                                    <input type="text" id = "email" placeholder="Your@example.com :">
+                                    <input type="text" id = "message" placeholder="Message">
+                                    
+                                    <button class="order-online">
+                                        SUBMIT
+                                    </button>
+                            </form>
+                        </div>
+                        
+                        
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+            <script src="/static/productPage.js"></script>
+
+        </body>
+    </html>

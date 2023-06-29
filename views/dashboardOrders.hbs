@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="/static/dashboardOrders.css">
+      <script src="https://kit.fontawesome.com/243ba828f2.js" crossorigin="anonymous"></script>
+    
+      
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+    
+
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  
+
+</head>
+<body>
+
+    <div class = "navbar-dashboard">
+            <div class = "company"> 
+                <div class = "company-logo">
+                    
+                </div>
+                <div class = "company-name">
+                    DOYDOY's BAKE SHOP
+                </div>
+            </div>
+            <div class = "dashboard-menu">
+                <div class="dashboard-menu-options">
+
+                    <div class="d-menu-options-header">
+                        <div class = "d-menu-options-icon">
+                            
+                            <i class="fa-sharp fa-solid fa-list white"></i>
+                        </div>
+                        <div class="d-menu-options-text-header">NAVIGATION</div>
+                    </div>
+                    <a href="/adminpannel"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            
+                            <i class="fa-sharp fa-solid fa-desktop white"></i>
+                        </div>
+                        <div class="d-menu-options-text"> M a i n  &nbsp; D a s h</div>
+                    </a>
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class=" fa-sharp fa-solid fa-box white"></i>
+                        </div>
+                        <div class="d-menu-options-text"> P r o d u c t s</div>
+                    </a>
+                    
+                    <a href="/dashboard/orders" class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-boxes-packing white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> O r d e r s</div>
+                    </a>
+
+
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-dollar-sign white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> E a r n i n g s</div>
+                    </a>
+                    
+
+
+
+
+                    <a href="/"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-users white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text">A c c o u n t s</div>
+                    </a>
+                    
+                    <a href="/dashboard/visitors"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-user-secret white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text">V i s i t o r s</div>
+                    </a>
+                    
+                    <a href="/dashboard/options"class="d-menu-options">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-gears white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> O p t i o n s</div>
+                    </a>
+                    
+        
+                </div>
+                    <a href ="/" class="d-menu-options-logout">
+                        <div class = "d-menu-options-icon">
+                            <i class="fa-sharp fa-solid fa-door-open white"></i>
+                        </div>
+                        
+                        <div class="d-menu-options-text"> L O G &nbsp; O U T</div>
+                    </a>
+
+            </div>
+
+        </div>
+    <div class = "page">
+
+             <div id="edit-product-modal">
+            
+            <form action="/dashboard/products/add" method="POST" enctype="multipart/form-data"  class="view-order-form">
+              <div class="top-modal"> 
+                                   <div class="header-modal">
+                    <div class="header-modal-txt">
+                        ORDER
+                    </div>
+                    <div id="orderNo" class="header-modal-txt">
+                        #5546
+                    </div>
+                    <div class="header-modal-qty">
+                        (10 ITEMS)
+                    </div>
+             
+               </div>
+                    <div class="cart-rows-header">
+                        <div class="cart-rows-header-text">Product</div>
+                        <div class="cart-rows-header-text"></div>
+                        <div class="cart-rows-header-text">Quantity</div>
+                        <div class="cart-rows-header-text">Price</div>
+                        <div class="cart-rows-header-text">Total</div>
+                        <div class="cart-rows-header-remove"></div>
+                    </div>
+                <div class = "cart-body">
+
+                    <div class="cart-rows">
+
+                                
+                    </div>
+                </div>
+<hr class="cart-line">
+                    <div class="shipping-total-price">
+                                    
+                                    <div class = "shipping-total">
+                                        <div class="shipping-total-text">
+                                            SHIPPING
+                                        </div>
+                                        <div id = "total-shipping-cost" class="shipping-total-value">
+                                            6.70
+                                        </div>
+
+                                    </div>
+                                    <div class = "shipping-total">
+                                        <div class="shipping-total-text">
+                                            ITEMS 
+                                        </div>
+                                        <div id = "total-item-cost" class="shipping-total-value">
+                                            61.67
+                                        </div>
+
+                                    </div>
+                                    <div class = "full-cart">
+                                        <div class="full-cart-price">
+                                            TOTAL
+                                        </div>
+                                        <div id = "total-cost-shipping-items" class="full-cart-price-value">
+                                            67.87
+                                        </div>
+
+                                    </div>
+                                </div>
+                            
+              </div>
+               <div class="bottom-modal"> 
+
+                
+
+                    <div class="column">
+                           <div class="header-column"> 
+                                Order Information
+                                
+                           </div>
+                           <hr class="cart-line">
+                           <div class="column-desc"> 
+                            <div class="column-attribute">
+                                    Transaction : Succesfull
+                            </div>
+                            <div class="column-attribute">
+                                Recipt
+                                </div>
+
+                        <div class="header-column"> 
+                               Order Status
+                           <hr class="cart-line">     
+                           </div>
+                           
+
+                        <select name="shippingstatus" id="shippingstatus" class="product-category" type="text" required="">
+                            <option class ="yellow" value=false>Not Ready</option>
+                            <option  class = "green" value=true>Ready</option>
+                        </select>
+                           </div>
+
+
+
+                           
+                    </div>
+
+                    <div class="column">
+                           <div class="header-column"> 
+                                Customer Information
+                                
+                           </div>
+                           <hr class="cart-line">
+                           <div clas="column-desc"> 
+                            <div id="customer-name" class="column-attribute">
+                                    Ihar Gancharenka
+                            </div>
+                            <div id="phoneNumber" class="column-attribute">
+                                igorganch1@gmail.com
+                                </div>
+                            <div id="customer-email" class="column-attribute">
+                               N/A email
+                                </div>
+                           </div>
+
+                           
+                    </div>
+                    <div class="column">
+                           <div class="header-column"> 
+                                Shipping Address
+                                
+                           </div>
+                           <hr class="cart-line">
+                           <div clas="column-desc"> 
+                            <div id="customer-address" class="column-attribute">
+                                   
+                            </div>
+              
+                           </div>
+
+                           
+                    </div>
+
+              </div>
+
+
+
+            </form>
+           
+
+
+
+        </div>
+            
+
+
+
+        <div class="dashcontent-update">
+            <div class = "header-update">
+                <div class = "divider-header">
+
+                <div class = "circle ">
+
+                </div>
+                <div class = "header-options-logo"> 
+                   Orders
+                </div>
+
+
+
+                </div> 
+            </div> 
+
+
+
+                <div class="dashchart">
+                        <div class ="table-header-full">
+                            <div class = "table-header-upper"> 
+                                <div class ="table-header-text-group">
+                                   <div class ="table-header-text-main">O R D E R S</div> 
+                                   <div class ="table-header-text-lower-result-filter"> 
+                                        <div class ="results">{{Orders.length}} Results</div>
+                                        <div class ="filters">Filters: none</div>
+                                    </div> 
+                                </div> 
+                                <div class ="button-group">
+                                    <div class = "dropdown">
+                                        <button id = "filter-product-button" class = "filter-product-button">
+                                            <i class="fa-solid fa-filter"></i>
+                                            <div class = "filter-product-button-text">Filters</div>
+                                        </button>
+                                        <div class ="dropdown-list">
+                                            <div class="filter-container">
+                                                <div class = "modal-header-category">
+                                                    Filter
+                                                </div>
+                                                
+
+                                                    <div class = "search">
+                                                        <div class ="header-product-name-label">
+                                                            Search by :
+                                                        </div>
+                                                        <div class="search-option">
+                                                            <select name = "" id="search-options" class = "search-options" type="text" required>
+                                                                <option value = "id">ID</option>
+                                                                <option value = "name">Name</option>
+                                                                <option value = "email">Email</option>
+                                                                <option value = "phonenumber">Phone Number</option>
+                                                              
+                                                            </select>
+                                                            <input id = "search-word" class = "search-word" type="text"></input>
+
+                                                        </div>                                                       
+                                                    </div>
+        
+                                                    <div class = "category-list">
+                                                        <div class ="header-product-name-label">
+                                                            Options
+                                                        </div>
+                                                        <div class="categories">
+                                                            <div class="option-list-filter">
+                                                                <input value = "Pick up" name = "type" class= "input-filter" type="checkbox" >
+                                                                <div class=" label-checkbox-filter">Pick up</div>
+                                                            </div>
+                                                            <div class="option-list-filter">
+                                                                <input value = "Delivery" name = "type" class= "input-filter" type="checkbox" >
+                                                                <div class="label-checkbox-filter">Delivery</div>
+                                                            </div>
+                                                             <div class="option-list-filter">
+                                                                <input value = "Ordered" name = "status" class= "input-filter" type="checkbox" >
+                                                                <div class=" label-checkbox-filter">Ordered</div>
+                                                            </div>
+                                                            <div class="option-list-filter">
+                                                                <input value = "Complete" name = "status" class= "input-filter" type="checkbox" >
+                                                                <div class="label-checkbox-filter">Complete</div>
+                                                            </div>
+                                                        </div>
+                                                        
+
+                                                    </div>
+                                                
+                                            </div>
+                                      
+
+
+                                        </div>
+                                    </div>
+
+               
+
+
+                                </div>
+                            </div>
+                            <div class="table-header-all">
+                                <div class="table-header-products center-text">ID</div>
+                                <div class="table-header-products center-text">Phone #</div>
+                                <div class="table-header-products center-text">Name</div>
+                                <div class="table-header-products center-text">Status</div>
+                                <div class="table-header-products center-text">Order Details</div>
+                                <div class="table-header-products center-text">Order Total</div>
+                                <div class="table-header-products center-text">Address</div>
+                                <div class="table-header-products center-text">Delivery Method</div>
+                                <div class="table-header-products center-text">Deadline</div>
+                                <div class="table-header-products-start-end end-text"></div>
+                            </div>
+                        </div>
+
+                    <div class="login-rows">
+                        {{#each Orders}}
+                        <div class="each-user">
+
+                            <div id='{{this.dataValues.id}}-id' class="id-row equal-log-columns-products center-text">
+                               {{this.dataValues.id}}</div>
+
+                            <div id='{{this.dataValues.id}}-name' class="email-row equal-log-columns-products center-text  ">
+                                {{this.dataValues.Customer.dataValues.phoneNumber}}</div>
+                            
+                            <div id='-ip' class=" name-row equal-log-columns-products  center-text ">
+                                  {{this.dataValues.Customer.dataValues.name}} </div>
+                            {{#if this.dataValues.ready}}
+                            <div id='{{this.dataValues.id}}-status' class=" status-row equal-log-columns-products center-text green ">
+                               Complete </div>
+                            {{else}}
+
+                            <div id='{{this.dataValues.id}}-status' class="status-row equal-log-columns-products center-text yellow ">
+                              Ordered</div>
+                            {{/if}}
+         
+                            <div id='{{this.dataValues.id}}-link' class="equal-log-columns-products center-text  link">
+                                View
+                                </div>
+                            
+                            <div id='{{this.dataValues.id}}-total' class="category-row equal-log-columns-products center-text ">
+                                {{this.dataValues.total}}
+                                
+                            </div>       
+
+
+                            <div id='{{this.dataValues.Stock.dataValues.id}}-price' class="price-row equal-log-columns-products center-text  userAgent">
+                                 {{this.dataValues.Address.dataValues.Address}} {{this.dataValues.Address.dataValues.PostalCode}} , Toronto , {{this.dataValues.Address.dataValues.state}}, {{this.dataValues.Address.dataValues.Country}} </div>
+                                
+                            <div id='{{this.dataValues.Stock.dataValues.id}}-weight-unit' class=" type-row equal-log-columns-products center-text userAgent">
+                                    {{this.dataValues.Delivery.dataValues.DeliveryType}}
+                               </div>
+
+
+                            <div id='{{this.dataValues.Stock.dataValues.id}}-available' class="availabe-row equal-log-columns-products center-text">
+                                1:30pm
+                            </div>
+                            <div class="equal-log-columns-products-start-end center-text address">
+                                <i id = '{{this.dataValues.Stock.dataValues.id}}-edit'class="edit-button fa-solid fa-pen-to-square changecolor"></i></div>
+                        </div>
+                        {{/each}}
+                    
+
+                    </div>
+                        
+
+                </div>
+        </div>
+    </div>
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script src="/static/dashboardOrders.js"></script>
+    </body>
+    </html>

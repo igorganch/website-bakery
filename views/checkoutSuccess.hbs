@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+    <html lang="en">
+        <link rel="stylesheet" type="text/css" href="/static/checkoutSuccess.css">
+                <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"
+        integrity="sha384-7EyYLQZgWBi67fBtVxw60/OWl1kjsfrPFcaU0pp0nAh+i8FD068QogUvg85Ewy1k"
+        crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/243ba828f2.js" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>   
+
+        <meta charset="UTF-8">
+        <title>Checkout</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+         <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCV9ElwnaA8bjRVvfd6XTpoLQRALW4rPk&libraries=places,geometry"></script>
+       
+  
+        <body>
+            
+                <div class = "header">
+                    <div class = "divider-header">
+                        <div class = "header-options"> 
+                            <a href ="/">ABOUT</a>
+                        </div>
+                        <div class = "header-options"> 
+                            <a href ="/menu">MENU</a>
+                        </div>
+
+                        <div class = "header-options-logo"> 
+                        <a href ="/">DOYDOY'S &nbsp;&nbsp;BAKE&nbsp;&nbsp;SHOP</a>
+                        </div>
+
+                        <div class = "header-options"> 
+                            <a href ="/">CONTACT&nbsp;&nbsp;US</a>
+                        </div>
+
+                        <div class = "header-options"> 
+                           <a href ="/">LOGIN</a> 
+                        </div>
+                    </div>   
+                    <div class="divider-icons">
+                        <i class="fa-sharp fa-solid fa-user fa-lg"></i>
+                       <i class="fa-sharp fa-solid fa-cart-shopping fa-lg"></i>
+                    </div>
+                    
+                </div>
+            <div class="page">
+                <div id ='{{order.dataValues.id}}' class = "content">
+                    <div class="content-body">
+                    <div class = "header-content">
+                        Approved
+                    </div>
+                    <div class="description-content">
+                            Hi {{order.dataValues.Customer.dataValues.name}},<br>
+
+                    We've Recieved your order and it should be deliverd soon!  
+                    <br> 
+                    We will call/email you at 647-787-2034 when the order is ready.
+                    </div>
+                    <hr class="cart-line">
+
+
+                    <div class="cart-body">
+     
+                                <div class="cart-rows">
+                                    
+                                {{#each order.dataValues.Items}}
+                                <div class="cart-row" id='{{this.dataValues.id}}-cartRow'>
+                                    <div class="cart-rows-item-image"><img class="product-image-cart" src="/static/baguete.jpg"></div>
+                                    <div class ="content-box">
+                                        <div class="cart-rows-item-name">{{this.dataValues.Product.dataValues.productName}}</div>
+                                        <div class="cart-rows-category-name">{{this.dataValues.Product.dataValues.Category}}</div>
+                                    </div>
+                                    <div class="content-box-costs">
+                                            <div class="cart-rows-item-quantity">
+                                            Qty  {{this.dataValues.quantity}}
+                                            </div>
+                                            <div class="x">x</div>
+                                            <div class="cart-rows-item-price">${{this.dataValues.Product.dataValues.price}}</div>
+                                            <div class="x">=</div>
+                                            <div class="cart-rows-item-total">$17.85</div>
+
+                                    </div>
+                            </div>
+                            {{/each}}
+                            
+                         </div>
+                    </div>
+                     <hr class="cart-line">
+
+
+                     <div class = "content-totals">
+                        <div class="content-totals-body">
+                            <div class = "content-total-header">
+                                Subtotal
+                            </div>
+                            <div class = "content-total-cost">
+                                ${{order.dataValues.total}}
+                            </div>
+                        </div>
+                        <div class="content-totals-body">
+                            <div class = "content-total-header">
+                                Shipping
+                            </div>
+                            <div class = "content-total-cost">
+                                ${{order.dataValues.Delivery.dataValues.price}}
+                            </div>
+                        </div>
+                        <div class="content-totals-body">
+                            <div class = "content-total-header">
+                                Taxes
+                            </div>
+                            <div class = "content-total-cost">
+                                $4.56
+                            </div>
+                        </div>
+  <hr class="cart-line">
+                        <div class="content-totals-body">
+                            <div class = "content-total-header">
+                                Total
+                            </div>
+                            <div class = "content-total-cost total-cost">
+                                $42.67
+                            </div>
+                        </div>
+      <hr class="cart-line">
+                     </div>
+                    
+                        <div class="content-order-info">
+                            <div class = "order-info-box">
+                                <div class = "order-info-box-header">
+                                    Order Date
+                                </div>
+                                <div class="order-info-text">
+                                   {{order.dataValues.createdAt}}
+                                </div>
+                            </div>
+                            <div class = "order-info-box">
+                                <div class = "order-info-box-header">
+                                    Order #
+                                </div>
+                                <div class="order-info-text">
+                                    
+                                    {{order.dataValues.id}}
+                                </div>
+                            </div>
+                            <div class = "order-info-box">
+                                <div class = "order-info-box-header">
+                                    Payment 
+                                </div>
+                                <div class="order-info-text">
+                                    Visa -3456
+                                </div>
+                            </div>
+                            <div class = "order-info-box">
+                                <div class = "order-info-box-header">
+                                    Address 
+                                </div>
+                                <div class="order-info-text">
+                                    {{order.dataValues.Address.dataValues.Address}}, {{order.dataValues.Address.dataValues.PostalCode}}
+                                </div>
+                            </div>
+                        </div>
+                     <hr class="cart-line">
+                    <div class="description-content">
+                        Thank you for shopping with us!
+                        <br>
+                       A copy of this was sent to igorganch1@gmail.com from dudoy@gmail.com.
+                    </div>
+                    </div>
+                    <div class="content-footer">
+                    <div class="description-content-footer">
+                        Questions? Send us an email at dudoy@gmail.com or call +1 23354156235.
+                    </div>
+                    </div>
+
+                     </div>
+                
+            <div>
+
+        </body>   
+    </html>

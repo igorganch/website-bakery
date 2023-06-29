@@ -48,10 +48,9 @@ $(document).ready(function () {
 
 
 
-
+    (document.getElementById("edit-product-form")).addEventListener("submit", onsubmit);
 /*FILTER OPTION */
     var onoff = false;
-    (document.getElementById("edit-product-form")).addEventListener("submit", onsubmit);
     var categoryFilter = [];
     var qtyunlmtdFilter =[];
     var avFilter =[];
@@ -142,7 +141,7 @@ $(document).ready(function () {
        
 
             for (let i = 0; i < ctattribute.length; i++){
-                if ( (((searchCol[i].textContent.trim()).toLowerCase()).search((searchWord.trim()).toLowerCase()) != -1) && ( categoryFilter.length == 0 || categoryFilter.indexOf((ctattribute[i].textContent).trim()) != -1) && ( qtyunlmtdFilter.length == 0 || qtyunlmtdFilter.indexOf((qtyunlmtdattribute[i].textContent).trim()) != -1) && ( avFilter.length == 0 || avFilter.indexOf((avattribute[i].textContent).trim()) != -1)){
+                if ( (((searchCol[i].textContent.trim()).toLowerCase()).search((searchWord.trim()).toLowerCase()) == 0 ) && ( categoryFilter.length == 0 || categoryFilter.indexOf((ctattribute[i].textContent).trim()) != -1) && ( qtyunlmtdFilter.length == 0 || qtyunlmtdFilter.indexOf((qtyunlmtdattribute[i].textContent).trim()) != -1) && ( avFilter.length == 0 || avFilter.indexOf((avattribute[i].textContent).trim()) != -1)){
                     ctattribute[i].parentNode.style.display = "flex";
                 }
                 else{
